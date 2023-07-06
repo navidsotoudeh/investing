@@ -1,11 +1,10 @@
-import Image from "next/image";
-import Link from "next/link";
-
+import HeroBox from "../app/components/pages/home/HeroBox";
+import SecondBox from "../app/components/pages/home/SecondBox";
 export default function HomePage() {
   return (
-    <main className="flex min-h-screen flex-col items-center justify-between p-24">
-      Home Page
-      <Link href="www.google.com">Go to my profile</Link>
-    </main>
+    <section className="flex-col items-center gap-8 flex w-2/3">
+      <HeroBox />
+      <SecondBox />
+    </section>
   );
 }

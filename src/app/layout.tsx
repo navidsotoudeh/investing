@@ -21,7 +21,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
     <html lang="en">
       <body className={`${poppins.className} ${inter.className}`}>
         <Header />
-        <main className=" bg-red-50">{children}</main>
+        <main className="flex justify-center bg-red-50">{children}</main>
       </body>
     </html>
   );
