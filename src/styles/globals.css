@@ -1,0 +1,16 @@
+@import './font_family.css';
+@import '../../public/assets/fonts/FontYekan/stylesheet.css';
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #c4c4c4;
+    color: #fff;
+    padding: 1rem;
+    border-bottom: 5px solid #fff;
+}

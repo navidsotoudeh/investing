@@ -1,6 +1,6 @@
 "use client";
 import { useState, useEffect } from "react";
-import ContactUsForm from "@/app/components/pages/contact-us/ContactUsForm";
+import ContactUsForm from "@/components/pages/contact-us/ContactUsForm";
 const ContactUs = () => {
   const [name, setName] = useState("نوید ستوده مهر");
   useEffect(() => {
