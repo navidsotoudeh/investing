@@ -5,7 +5,7 @@ import { FaVideo } from "react-icons/fa";
 import Text from "../../UIKit/Text";
 const FirstSection = () => {
   return (
-    <div className="flex gap-2 w-full  justify-between" dir="rtl">
+    <div className="flex gap-2 w-full py-2 justify-between" dir="rtl">
       <div className="w-[300px] text-right">
         <Text variant="h2" htmlTag="h1">
           بوم‌بان
