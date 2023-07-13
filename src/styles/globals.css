@@ -1,16 +1,19 @@
 @import './font_family.css';
 @import '../../public/assets/fonts/FontYekan/stylesheet.css';
-
+/*@import '../components/UIKit/Button/Button.css';*/
+/*@import '../components/UIKit/Input/Input.css';*/
+@import '../components/UIKit/Text/Text.css';
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-.header {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-color: #c4c4c4;
-    color: #fff;
-    padding: 1rem;
-    border-bottom: 5px solid #fff;
-}
+/*.header {*/
+/*    display: flex;*/
+/*    justify-content: flex-start;*/
+/*    gap: ;*/
+/*    align-items: center;*/
+/*    background-color: #232735;*/
+/*    color: #fff;*/
+/*    padding: 1rem;*/
+/*    border-bottom: 5px solid #fff;*/
+/*}*/

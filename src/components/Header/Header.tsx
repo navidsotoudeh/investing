@@ -1,21 +1,21 @@
 import Link from "next/link";
 import { FaHome } from "react-icons/fa";
+import Text from "../UIKit/Text/Text";
 const Header = () => {
   return (
-    <header className="header">
-      <span>بوم بان</span>
-      <span>
+    <header
+      className="flex justify-start gap-8 p-4 bg-[#232735] text-white"
+      dir="rtl"
+    >
+      <div className="flex items-center">
         <FaHome />
-      </span>
-      {/*<div className="container">*/}
-      {/*  <div className="flex flex-col gap-2">*/}
-      {/*    <Link href="/contact-us">Contact Us</Link>*/}
-      {/*    <Link href="/about-us">About Us</Link>*/}
-      {/*    <Link href="/about-us/team-members">Our Team</Link>*/}
-      {/*    <Link href="/cryptocurrency">Crypto Currency</Link>*/}
-      {/*    <Link href="/stock-market">Stock Market</Link>*/}
-      {/*  </div>*/}
-      {/*</div>*/}
+        {/*<Text>بوم بان</Text>*/}
+      </div>
+      <Link href="/stock-market">بورس</Link>
+      <Link href="/cryptocurrency">رمزارز</Link>
+      <Link href="/about-us/team-members">مقالات</Link>
+      <Link href="/contact-us">تماس با ما</Link>
+      <Link href="/about-us">درباره‌ی ما</Link>
     </header>
   );
 };
