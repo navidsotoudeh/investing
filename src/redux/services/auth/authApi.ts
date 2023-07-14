@@ -1,6 +1,7 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 import { setCredentials, logOut } from "../../slices/auth/authSlice";
 import Router from "next/router";
+// @ts-ignore
 import Cookies from "js-cookie";
 
 export const authApi = createApi({
@@ -70,7 +71,7 @@ export const authApi = createApi({
       }),
       async onQueryStarted(arg, { dispatch, queryFulfilled }) {
         Router.push("/");
-        dispatch(logOut());
+        // dispatch(logOut());
         Cookies.remove("investing-accessToken");
         // try {
         //   const { data } = await queryFulfilled

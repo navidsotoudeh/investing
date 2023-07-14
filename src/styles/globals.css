@@ -4,6 +4,7 @@
 @import '../components/UIKit/Input/Input.css';
 @import '../components/UIKit/Button/Button.css';
 @import '../components/UIKit/Text/Text.css';
+/*@import '../components/UIKit/Radio/Radio.css';*/
 @tailwind base;
 @tailwind components;
 @tailwind utilities;

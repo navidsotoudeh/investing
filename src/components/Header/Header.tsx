@@ -3,7 +3,7 @@ import { FaHome } from "react-icons/fa";
 import { FaUserCircle } from "react-icons/fa";
 
 const Header = () => {
-  const isAuthenticated = false;
+  const isAuthenticated = true;
   return (
     <header
       className="flex justify-start p-4 bg-[#232735] text-white"

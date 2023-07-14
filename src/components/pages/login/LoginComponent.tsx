@@ -1,6 +1,6 @@
 "use client";
 import React from "react";
-import { useForm, SubmitHandler, Controller } from "react-hook-form";
+import { useForm, Controller } from "react-hook-form";
 import "suneditor/dist/css/suneditor.min.css";
 
 //api
@@ -14,19 +14,19 @@ import Button from "../../UIKit/Button";
 import Input from "../../UIKit/Input";
 import Text from "../../UIKit/Text";
 //type
-import { FormValues } from "./LoginComponentInterface";
+import { IFormValues } from "./LoginComponentInterface";
 const LoginComponent = () => {
   const {
     handleSubmit,
     control,
     formState: { errors },
     reset,
-  } = useForm();
+  } = useForm<IFormValues>();
 
   const [login, { isLoading: loggingIsLoading }] = useLoginUserMutation();
   //const [signup, { isLoading: signupIsLoading }] = useSignupUserMutation();
 
-  const onSubmit: SubmitHandler<FormValues> = (data) => {
+  const onSubmit = (data: any) => {
     login(data)
       .unwrap()
       .then(() => {
@@ -110,8 +110,7 @@ const LoginComponent = () => {
         <Button
           label="ثبت فرم"
           size="large"
-          onClick={handleSubmit((d) => onSubmit(d as FormValues))}
-          // loading={isLoading}
+          onClick={handleSubmit((d) => onSubmit(d))} // loading={isLoading}
         />
       </form>
     </div>
