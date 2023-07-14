@@ -3,6 +3,7 @@ import { FaHome } from "react-icons/fa";
 import { FaUserCircle } from "react-icons/fa";
 
 const Header = () => {
+  const isAuthenticated = false;
   return (
     <header
       className="flex justify-start p-4 bg-[#232735] text-white"
@@ -18,7 +19,10 @@ const Header = () => {
         <Link href="/contact-us">تماس با ما</Link>
         <Link href="/about-us">درباره‌ی ما</Link>
       </div>
-      <Link href="/profile" className="justify-self-end w-1/12">
+      <Link
+        href={`${isAuthenticated ? "/profile" : "/login"}`}
+        className="justify-self-end w-1/12"
+      >
         <FaUserCircle size={24} color="white" />
       </Link>
     </header>
