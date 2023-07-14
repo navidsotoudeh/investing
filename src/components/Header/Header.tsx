@@ -15,7 +15,8 @@ const Header = () => {
         </div>
         <Link href="/stock-market">بورس</Link>
         <Link href="/cryptocurrency">رمزارز</Link>
-        <Link href="/about-us/team-members">مقالات</Link>
+        <Link href="/about-us/team-members">اعضای تیم</Link>
+        <Link href="/articles">مقالات</Link>
         <Link href="/contact-us">تماس با ما</Link>
         <Link href="/about-us">درباره‌ی ما</Link>
       </div>

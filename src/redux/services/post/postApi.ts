@@ -23,8 +23,34 @@ export const postApi = createApi({
         };
       },
     }),
+    getPosts: builder.query<any, any>({
+      query: (payload) => {
+        const { params } = payload;
+        return {
+          url: "",
+          headers: {
+            Accept: "*/*",
+            "Content-Type": "application/json",
+          },
+          params: {
+            page: params.page,
+            pageSize: params.pageSize,
+          },
+        };
+      },
+      // async onQueryStarted(arg, { dispatch, queryFulfilled }) {
+      //   await queryFulfilled.catch((err) => {
+      //     arg;
+      //     // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+      //     // @ts-expect-error
+      //     if (err?.error?.status == 401) {
+      //       dispatch(setUnauthorizedStatus(true));
+      //     }
+      //   });
+      // },
+    }),
   }),
 });
 
 // Export hooks for usage in functional components, which are auto-generated based on the defined endpoints
-export const { useCreatePostMutation } = postApi;
+export const { useCreatePostMutation, useGetPostsQuery } = postApi;

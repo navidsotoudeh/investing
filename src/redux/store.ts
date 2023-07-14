@@ -21,7 +21,11 @@ export const store = configureStore({
   },
   devTools: process.env.NODE_ENV !== "production",
   middleware: (getDefaultMiddleware) =>
-    getDefaultMiddleware({}).concat([authApi.middleware, userApi.middleware]),
+    getDefaultMiddleware({}).concat([
+      authApi.middleware,
+      postApi.middleware,
+      userApi.middleware,
+    ]),
 });
 
 setupListeners(store.dispatch);
