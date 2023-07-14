@@ -1,8 +1,10 @@
+"use client";
 import type { NextRequest } from "next/server";
-// import { isAuthenticated } from "@lib/auth";
+import { store } from "@/redux/store";
 import { NextFetchEvent, NextResponse } from "next/server";
 import { MiddlewareFactory } from "@/middlewares/types";
 import { cookies } from "next/headers";
+import { selectIsAuthenticated } from "@/redux/slices/auth/authSlice";
 // import jwt from 'jsonwebtoken'
 
 // function isTokenExpired(token: string) {
@@ -13,11 +15,14 @@ import { cookies } from "next/headers";
 
 export const withAuthentication: MiddlewareFactory = (next) => {
   return async (request: NextRequest, _next: NextFetchEvent) => {
-    const token = request.cookies.get("notesapp-accessToken")?.value ?? "";
+    // const isAuthenticated = useSelector(selectIsAuthenticated);
+    const isAuthenticated = store.getState().auth.isAuthenticated;
+    console.log("isAuthenticated", isAuthenticated);
+    // const token = request.cookies.get("notesapp-accessToken")?.value ?? "";
 
-    if (request.url.includes("/users") && !token) {
+    if (request.url.includes("/profile") && !isAuthenticated) {
       return NextResponse.redirect(
-        new URL(`/login?backUrl=/users`, request.url)
+        new URL(`/login?backUrl=/profile`, request.url)
       );
     }
   };

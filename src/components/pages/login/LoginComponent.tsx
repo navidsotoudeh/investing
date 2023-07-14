@@ -1,5 +1,6 @@
 "use client";
 import React from "react";
+import { toast } from "react-toastify";
 import { useForm, Controller } from "react-hook-form";
 import "suneditor/dist/css/suneditor.min.css";
 
@@ -13,6 +14,7 @@ import {
 import Button from "../../UIKit/Button";
 import Input from "../../UIKit/Input";
 import Text from "../../UIKit/Text";
+import ToastUI from "../../UIKit/Toast";
 //type
 import { IFormValues } from "./LoginComponentInterface";
 const LoginComponent = () => {
@@ -30,15 +32,15 @@ const LoginComponent = () => {
     login(data)
       .unwrap()
       .then(() => {
-        // toast.success(
-        //     <ToastUI
-        //         title="پست با موفقیت ثبت شد."
-        //         //subtitle={'متن خط دوم'}
-        //         subtitle={null}
-        //         type={'success'}
-        //     />
-        // )
-        // reset()
+        toast.success(
+          <ToastUI
+            title="پست با موفقیت ثبت شد."
+            //subtitle={'متن خط دوم'}
+            subtitle={null}
+            type={"success"}
+          />
+        );
+        reset();
       })
       .catch(() => {});
   };
@@ -108,7 +110,7 @@ const LoginComponent = () => {
         </div>
 
         <Button
-          label="ثبت فرم"
+          label="ورود"
           size="large"
           onClick={handleSubmit((d) => onSubmit(d))} // loading={isLoading}
         />

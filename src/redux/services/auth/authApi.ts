@@ -39,8 +39,8 @@ export const authApi = createApi({
       async onQueryStarted(arg, { dispatch, queryFulfilled }) {
         await queryFulfilled
           .then((res) => {
-            // dispatch(setCartInformation(res?.data));
             Cookies.set("investing-accessToken", res?.data?.access_token);
+            dispatch(setCredentials(res?.data));
           })
           .catch((err) => {
             arg;
