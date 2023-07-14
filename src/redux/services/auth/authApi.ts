@@ -10,7 +10,6 @@ export const authApi = createApi({
   endpoints: (builder) => ({
     signupUser: builder.mutation({
       query: (signupData) => {
-        console.log("signupData", signupData);
         return {
           url: "/signup",
           method: "POST",
@@ -41,7 +40,6 @@ export const authApi = createApi({
         await queryFulfilled
           .then((res) => {
             // dispatch(setCartInformation(res?.data));
-            console.log("res", res);
             Cookies.set("investing-accessToken", res?.data?.access_token);
           })
           .catch((err) => {

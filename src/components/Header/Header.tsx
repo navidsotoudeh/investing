@@ -1,9 +1,13 @@
+"use client";
 import Link from "next/link";
+import { useDispatch, useSelector } from "react-redux";
 import { FaHome } from "react-icons/fa";
 import { FaUserCircle } from "react-icons/fa";
+import { selectIsAuthenticated } from "@/redux/slices/auth/authSlice";
 
 const Header = () => {
-  const isAuthenticated = true;
+  const isAuthenticated = useSelector(selectIsAuthenticated);
+  console.log("isAuthenticated", isAuthenticated);
   return (
     <header
       className="flex justify-start p-4 bg-[#232735] text-white"

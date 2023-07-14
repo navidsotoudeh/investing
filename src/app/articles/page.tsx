@@ -11,8 +11,6 @@ const Articles = () => {
     { skip: !true, refetchOnMountOrArgChange: true }
   );
 
-  console.log("postsData", postsData);
-
   useEffect(() => {
     // Side-effect...
     return function cleanup() {

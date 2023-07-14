@@ -11,7 +11,6 @@ export const postApi = createApi({
   endpoints: (builder) => ({
     createPost: builder.mutation({
       query: (newPost) => {
-        console.log("newPost in postApi", newPost);
         return {
           url: ``,
           method: "POST",

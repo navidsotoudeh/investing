@@ -63,8 +63,7 @@ const Text: React.FC<TextProps> = ({
   const Component = componentsMap[htmlTag];
 
   const rootClassName = cn(`text-root`, `text-${variant}-${lang}`, className);
-  console.log("rootClassName", rootClassName);
-  console.log("Component", Component);
+
   return (
     <Component style={style} className={rootClassName} onClick={onClick}>
       {children}

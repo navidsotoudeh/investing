@@ -10,7 +10,7 @@ interface PostCardProps {
 
 const PostCard: React.FC<PostCardProps> = ({ postData }) => {
   const [state, setState] = useState();
-  console.log("postData", postData);
+
   useEffect(() => {
     // Side-effect...
     return function cleanup() {

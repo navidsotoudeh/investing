@@ -26,7 +26,6 @@ const ProfileComponent = () => {
   const [createNewPost, { isLoading }] = useCreatePostMutation();
 
   const onSubmit: SubmitHandler<FormValues> = (newPost) => {
-    console.log("newPost in ProfileComponent", newPost);
     // dispatch(setContactForm(newContact))
     createNewPost(newPost)
       .unwrap()
