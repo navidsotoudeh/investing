@@ -2,9 +2,10 @@
 import React, { useEffect, useState } from "react";
 import Text from "@/components/UIKit/Text";
 import Image from "next/image";
-
+//type
+import { PostInterface } from "./PostCardInterface";
 interface PostCardProps {
-  postData: any;
+  postData: PostInterface;
 }
 
 const PostCard: React.FC<PostCardProps> = ({ postData }) => {
@@ -22,11 +23,14 @@ const PostCard: React.FC<PostCardProps> = ({ postData }) => {
       <Text variant="h4" htmlTag="h1">
         {postData.title}
       </Text>
-      <div className="flex">
+      <div className="flex gap-2">
         <Image src={postData.thumbnail} alt="pic" width={150} height={150} />
-        <Text variant="body4" htmlTag="span">
-          {postData.content}
-        </Text>
+        <div
+          className="w-full"
+          dangerouslySetInnerHTML={{
+            __html: postData?.htmlContent,
+          }}
+        />
       </div>
     </div>
   );
