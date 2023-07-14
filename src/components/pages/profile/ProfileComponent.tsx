@@ -4,6 +4,9 @@ import { Controller, useForm, SubmitHandler } from "react-hook-form";
 import SunEditor from "suneditor-react";
 import "suneditor/dist/css/suneditor.min.css";
 
+//api
+import { useCreatePostMutation } from '../../../redux/services/post/postApi'
+
 //component
 import Button from "../../UIKit/Button";
 
@@ -16,10 +19,27 @@ const ProfileComponent = () => {
     formState: { errors },
     reset,
   } = useForm();
+  const [createNewPost, { isLoading }] = useCreatePostMutation()
 
-  const onSubmit: SubmitHandler<FormValues> = (newContact) => {
-    console.log("newContact", newContact);
-  };
+  const onSubmit: SubmitHandler<FormValues> = (newPost) => {
+    // dispatch(setContactForm(newContact))
+    createNewPost(newPost)
+        .unwrap()
+        .then(() => {
+          // toast.success(
+          //     <ToastUI
+          //         title="پست با موفقیت ثبت شد."
+          //         //subtitle={'متن خط دوم'}
+          //         subtitle={null}
+          //         type={'success'}
+          //     />
+          // )
+          // reset()
+        })
+        .catch(() =>{}
+
+        )
+  }
   //===============================================================
   const [shortDescription, setShortDescription] = useState<null | string>(null);
 
@@ -68,13 +88,58 @@ const ProfileComponent = () => {
           </label>
           <input
             type="text"
-            name="name"
+            name="title"
             className={`shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline ${
               errors.name ? "border-red-500" : ""
             }`}
           />
-          {errors.name && (
-            <p className="text-red-500 text-xs italic">Name is required</p>
+          {errors.title && (
+            <p className="text-red-500 text-xs italic">title is required</p>
+          )}
+        </div>
+        <div className="mb-4 flex flex-col items-end">
+          <label className="text-gray-700 text-sm font-bold mb-2">
+            status
+          </label>
+          <input
+              type="text"
+              name="name"
+              className={`shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline ${
+                  errors.status ? "border-red-500" : ""
+              }`}
+          />
+          {errors.status && (
+              <p className="text-red-500 text-xs italic">status is required</p>
+          )}
+        </div>
+        <div className="mb-4 flex flex-col items-end">
+          <label className="text-gray-700 text-sm font-bold mb-2">
+            htmlContent
+          </label>
+          <input
+              type="text"
+              name="name"
+              className={`shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline ${
+                  errors.htmlContent ? "border-red-500" : ""
+              }`}
+          />
+          {errors.htmlContent && (
+              <p className="text-red-500 text-xs italic">htmlContent is required</p>
+          )}
+        </div>
+        <div className="mb-4 flex flex-col items-end">
+          <label className="text-gray-700 text-sm font-bold mb-2">
+            thumbnail
+          </label>
+          <input
+              type="text"
+              name="name"
+              className={`shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline ${
+                  errors.thumbnail ? "border-red-500" : ""
+              }`}
+          />
+          {errors.thumbnail && (
+              <p className="text-red-500 text-xs italic">thumbnail is required</p>
           )}
         </div>
 
