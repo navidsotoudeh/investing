@@ -12,7 +12,7 @@ import Button from "@/components/UIKit/Button";
 import Radio from "@/components/UIKit/Radio/Radio";
 import Input from "@/components/UIKit/Input";
 import Text from "@/components/UIKit/Text";
-
+import { useRouter } from "next/navigation";
 //type
 import { FormValues } from "./ProfileComponentInterface";
 
@@ -23,6 +23,7 @@ const ProfileComponent = () => {
     formState: { errors },
     reset,
   } = useForm();
+  const router = useRouter();
   const [createNewPost, { isLoading }] = useCreatePostMutation();
 
   const onSubmit: SubmitHandler<FormValues> = (newPost) => {
@@ -38,7 +39,7 @@ const ProfileComponent = () => {
         //         type={'success'}
         //     />
         // )
-        // reset()
+        router.push("/articles");
       })
       .catch(() => {});
   };
@@ -326,7 +327,7 @@ const ProfileComponent = () => {
         {/*</div>*/}
 
         <Button
-          label="ثبت فرم"
+          label="ارسال پست"
           size="large"
           onClick={handleSubmit((d) => onSubmit(d as FormValues))}
           // loading={isLoading}

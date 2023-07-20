@@ -1,6 +1,7 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 // @ts-ignore
 import Cookies from "js-cookie";
+
 export const postApi = createApi({
   reducerPath: "postApi",
   baseQuery: fetchBaseQuery({
@@ -20,6 +21,20 @@ export const postApi = createApi({
             authorization: `Bearer ${Cookies.get("investing-accessToken")}`,
           },
         };
+      },
+      async onQueryStarted(arg, { dispatch, queryFulfilled }) {
+        await queryFulfilled
+          .then((res) => {
+            console.log("aaaa28");
+            router.push("/articles");
+          })
+          .catch((err) => {
+            arg;
+            // '@ts-expect-error'
+            if (err?.error?.status == 401) {
+              // dispatch(setUnauthorizedStatus(true));
+            }
+          });
       },
     }),
     getPosts: builder.query<any, any>({

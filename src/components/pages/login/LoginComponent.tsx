@@ -26,7 +26,7 @@ const LoginComponent = () => {
   } = useForm<IFormValues>();
 
   const [login, { isLoading: loggingIsLoading }] = useLoginUserMutation();
-  //const [signup, { isLoading: signupIsLoading }] = useSignupUserMutation();
+  // const [signup, { isLoading: signupIsLoading }] = useSignupUserMutation();
 
   const onSubmit = (data: any) => {
     login(data)
@@ -34,8 +34,7 @@ const LoginComponent = () => {
       .then(() => {
         toast.success(
           <ToastUI
-            title="پست با موفقیت ثبت شد."
-            //subtitle={'متن خط دوم'}
+            title="ورود با موفقیت صورت گرفت."
             subtitle={null}
             type={"success"}
           />
@@ -48,8 +47,6 @@ const LoginComponent = () => {
   //===============================================================
   return (
     <div className="container" dir="ltr">
-      <h1 className="text-2xl font-bold">ارسال پست</h1>
-
       <form
         className="flex flex-col w-full gap-6 p-4 "
         onSubmit={handleSubmit(onSubmit)}
@@ -60,7 +57,7 @@ const LoginComponent = () => {
             control={control}
             defaultValue=""
             rules={{
-              required: "شماره همراه اجباری است",
+              required: "نام کاربری اجباری است",
             }}
             render={({ field: { onChange, value } }) => (
               <Input

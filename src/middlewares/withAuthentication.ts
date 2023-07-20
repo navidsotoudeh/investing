@@ -1,11 +1,8 @@
-"use client";
 import type { NextRequest } from "next/server";
-import { store } from "@/redux/store";
 import { NextFetchEvent, NextResponse } from "next/server";
 import { MiddlewareFactory } from "@/middlewares/types";
-import { cookies } from "next/headers";
-import { selectIsAuthenticated } from "@/redux/slices/auth/authSlice";
-// import jwt from 'jsonwebtoken'
+import { verifyToken } from "../utils/authUtils";
+import Cookies from "js-cookie";
 
 // function isTokenExpired(token: string) {
 //   const decoded = jwt.decode(token)
@@ -15,16 +12,15 @@ import { selectIsAuthenticated } from "@/redux/slices/auth/authSlice";
 
 export const withAuthentication: MiddlewareFactory = (next) => {
   return async (request: NextRequest, _next: NextFetchEvent) => {
-    // const isAuthenticated = useSelector(selectIsAuthenticated);
-    const isAuthenticated = store.getState().auth.isAuthenticated;
-    console.log("isAuthenticated", isAuthenticated);
-    // const token = request.cookies.get("notesapp-accessToken")?.value ?? "";
+    const token = Cookies.get("investing-accessToken");
+    console.log("token", token);
 
-    if (request.url.includes("/profile") && !isAuthenticated) {
-      return NextResponse.redirect(
-        new URL(`/login?backUrl=/profile`, request.url)
-      );
-    }
+    // if (request.url.includes("/profile") && !verifyToken(token)) {
+    //   console.log("18");
+    //   return NextResponse.redirect(
+    //     new URL(`/login?backUrl=/profile`, request.url)
+    //   );
+    // }
   };
 };
 

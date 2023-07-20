@@ -9,15 +9,6 @@ interface PostCardProps {
 }
 
 const PostCard: React.FC<PostCardProps> = ({ postData }) => {
-  const [state, setState] = useState();
-
-  useEffect(() => {
-    // Side-effect...
-    return function cleanup() {
-      // Side-effect cleanup...
-    };
-  }, []);
-  console.log("postData", postData);
   return (
     <div dir="rtl" className="border-2 shadow-amber-50 p-2 flex flex-col">
       <Text variant="h4" htmlTag="h1">
