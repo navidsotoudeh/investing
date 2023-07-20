@@ -1,8 +1,8 @@
-import type { NextRequest } from "next/server";
-import { NextFetchEvent, NextResponse } from "next/server";
-import { MiddlewareFactory } from "@/middlewares/types";
-import { verifyToken } from "../utils/authUtils";
-import Cookies from "js-cookie";
+import type { NextRequest } from 'next/server';
+import { NextFetchEvent, NextResponse } from 'next/server';
+import { MiddlewareFactory } from '@/middlewares/types';
+import { verifyToken } from '../utils/authUtils';
+import Cookies from 'js-cookie';
 
 // function isTokenExpired(token: string) {
 //   const decoded = jwt.decode(token)
@@ -12,9 +12,9 @@ import Cookies from "js-cookie";
 
 export const withAuthentication: MiddlewareFactory = (next) => {
   return async (request: NextRequest, _next: NextFetchEvent) => {
-    const token = Cookies.get("investing-accessToken");
-    Cookies.set("name", "navid");
-    console.log("token", token);
+    const token = Cookies.get('investing-accessToken');
+    Cookies.set('name', 'navid');
+    console.log('token', token);
 
     // if (request.url.includes("/profile") && !verifyToken(token)) {
     //   console.log("18");
@@ -26,5 +26,5 @@ export const withAuthentication: MiddlewareFactory = (next) => {
 };
 
 export const config = {
-  matcher: ["/profile"],
+  matcher: ['/profile'],
 };
