@@ -33,11 +33,7 @@ const LoginComponent = () => {
       .unwrap()
       .then(() => {
         toast.success(
-          <ToastUI
-            title="ورود با موفقیت صورت گرفت."
-            subtitle={null}
-            type={"success"}
-          />
+          <ToastUI title="ورود با موفقیت صورت گرفت." type={"success"} />
         );
         reset();
       })
