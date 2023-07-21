@@ -3,13 +3,14 @@ import { useEffect } from "react";
 import { useGetPostsQuery } from "@/redux/services/post/postApi";
 
 //component
-import PostCard from "../../components/pages/articles/PostCard";
+import PostCard from "../../components/pages/articles/ArticleCard";
+import ArticleCard from "../../components/pages/articles/ArticleCard";
 const Articles = () => {
-  // RTK API (get) order
-  const { data: postsData, isFetching: postsDataIsFetching } = useGetPostsQuery(
-    { params: { pageNumber: 1, pageSize: 6 } },
-    { skip: !true, refetchOnMountOrArgChange: true }
-  );
+  const { data: articlesData, isFetching: postsDataIsFetching } =
+    useGetPostsQuery(
+      { params: { pageNumber: 1, pageSize: 6 } },
+      { skip: !true, refetchOnMountOrArgChange: true }
+    );
 
   useEffect(() => {
     // Side-effect...
@@ -20,8 +21,8 @@ const Articles = () => {
 
   return (
     <div className="w-full py-4">
-      {postsData?.posts.map((postData: any) => {
-        return <PostCard postData={postData} key={postData.id} />;
+      {articlesData?.posts.map((articleData: any) => {
+        return <ArticleCard articleData={articleData} key={articleData.id} />;
       })}
     </div>
   );

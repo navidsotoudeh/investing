@@ -1,5 +1,4 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
-// @ts-ignore
 import Cookies from "js-cookie";
 
 export const postApi = createApi({
@@ -26,7 +25,6 @@ export const postApi = createApi({
         await queryFulfilled
           .then((res) => {
             console.log("aaaa28");
-            router.push("/articles");
           })
           .catch((err) => {
             arg;
@@ -52,19 +50,23 @@ export const postApi = createApi({
           },
         };
       },
-      // async onQueryStarted(arg, { dispatch, queryFulfilled }) {
-      //   await queryFulfilled.catch((err) => {
-      //     arg;
-      //     // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-      //     // @ts-expect-error
-      //     if (err?.error?.status == 401) {
-      //       dispatch(setUnauthorizedStatus(true));
-      //     }
-      //   });
-      // },
+    }),
+    getPostById: builder.query<any, any>({
+      query: (payload) => {
+        console.log("payload", payload);
+        const { postId } = payload;
+        return {
+          url: `/4`,
+          headers: {
+            Accept: "*/*",
+            "Content-Type": "application/json",
+          },
+        };
+      },
     }),
   }),
 });
 
 // Export hooks for usage in functional components, which are auto-generated based on the defined endpoints
-export const { useCreatePostMutation, useGetPostsQuery } = postApi;
+export const { useCreatePostMutation, useGetPostsQuery, useGetPostByIdQuery } =
+  postApi;

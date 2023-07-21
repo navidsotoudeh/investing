@@ -13,8 +13,6 @@ import Cookies from "js-cookie";
 export const withAuthentication: MiddlewareFactory = (next) => {
   return async (request: NextRequest, _next: NextFetchEvent) => {
     const token = Cookies.get("investing-accessToken");
-    Cookies.set("name", "navid");
-    console.log("token", token);
 
     // if (request.url.includes("/profile") && !verifyToken(token)) {
     //   console.log("18");

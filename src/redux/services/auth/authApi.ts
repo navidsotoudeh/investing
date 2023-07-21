@@ -1,7 +1,6 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 import { setCredentials, logOut } from "../../slices/auth/authSlice";
 import Router from "next/router";
-// @ts-ignore
 import Cookies from "js-cookie";
 
 export const authApi = createApi({
