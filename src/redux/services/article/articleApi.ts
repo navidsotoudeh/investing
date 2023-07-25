@@ -1,15 +1,15 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 import Cookies from "js-cookie";
 
-export const postApi = createApi({
-  reducerPath: "postApi",
+export const articleApi = createApi({
+  reducerPath: "articleApi",
   baseQuery: fetchBaseQuery({
     // baseUrl: `${process.env.NEXT_PUBLIC_BACKEND_CORE_BASE_URL}/api`,
     baseUrl: `http://localhost:3000/post`,
   }),
 
   endpoints: (builder) => ({
-    createPost: builder.mutation({
+    createArticle: builder.mutation({
       query: (newPost) => {
         return {
           url: ``,
@@ -35,7 +35,7 @@ export const postApi = createApi({
           });
       },
     }),
-    getPosts: builder.query<any, any>({
+    getArticles: builder.query<any, any>({
       query: (payload) => {
         const { params } = payload;
         return {
@@ -51,7 +51,7 @@ export const postApi = createApi({
         };
       },
     }),
-    getPostById: builder.query<any, any>({
+    getArticleById: builder.query<any, any>({
       query: (payload) => {
         console.log("payload", payload);
         return {
@@ -67,5 +67,8 @@ export const postApi = createApi({
 });
 
 // Export hooks for usage in functional components, which are auto-generated based on the defined endpoints
-export const { useCreatePostMutation, useGetPostsQuery, useGetPostByIdQuery } =
-  postApi;
+export const {
+  useCreateArticleMutation,
+  useGetArticlesQuery,
+  useGetArticleByIdQuery,
+} = articleApi;

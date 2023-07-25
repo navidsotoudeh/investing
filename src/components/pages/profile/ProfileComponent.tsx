@@ -5,7 +5,7 @@ import SunEditor from "suneditor-react";
 import "suneditor/dist/css/suneditor.min.css";
 
 //api
-import { useCreatePostMutation } from "@/redux/services/post/postApi";
+import { useCreateArticleMutation } from "@/redux/services/article/articleApi";
 
 //component
 import Button from "@/components/UIKit/Button";
@@ -24,7 +24,7 @@ const ProfileComponent = () => {
     reset,
   } = useForm();
   const router = useRouter();
-  const [createNewPost, { isLoading }] = useCreatePostMutation();
+  const [createNewPost, { isLoading }] = useCreateArticleMutation();
 
   const onSubmit: SubmitHandler<FormValues> = (newPost) => {
     // dispatch(setContactForm(newContact))

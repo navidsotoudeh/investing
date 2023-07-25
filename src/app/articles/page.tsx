@@ -1,23 +1,14 @@
 "use client";
-import { useEffect } from "react";
-import { useGetPostsQuery } from "@/redux/services/post/postApi";
+import { useGetArticlesQuery } from "@/redux/services/article/articleApi";
 
 //component
-import PostCard from "../../components/pages/articles/ArticleCard";
 import ArticleCard from "../../components/pages/articles/ArticleCard";
 const Articles = () => {
-  const { data: articlesData, isFetching: postsDataIsFetching } =
-    useGetPostsQuery(
+  const { data: articlesData, isFetching: articlesDataIsFetching } =
+    useGetArticlesQuery(
       { params: { pageNumber: 1, pageSize: 6 } },
       { skip: !true, refetchOnMountOrArgChange: true }
     );
-
-  useEffect(() => {
-    // Side-effect...
-    return function cleanup() {
-      // Side-effect cleanup...
-    };
-  }, []);
 
   return (
     <div className="w-full py-4">

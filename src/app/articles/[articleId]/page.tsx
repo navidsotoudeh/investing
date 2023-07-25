@@ -1,15 +1,11 @@
 "use client";
-import { useGetPostByIdQuery } from "@/redux/services/post/postApi";
+import { useGetArticleByIdQuery } from "@/redux/services/article/articleApi";
 import { useParams, notFound } from "next/navigation";
-
 const Article = () => {
   const params = useParams();
-
-  const { data: articleData, isFetching: postDataIsFetching } =
-    useGetPostByIdQuery(params.articleId);
-
-  if (!articleData) notFound();
-
+  const { data: articleData, isFetching: articleDataIsFetching } =
+    useGetArticleByIdQuery(params.articleId);
+  console.log("articleData", articleData);
   return (
     <div dir="rtl" className="flex flex-col">
       <div className="w-full py-4">{articleData?.title}</div>

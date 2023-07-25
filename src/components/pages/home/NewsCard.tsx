@@ -1,29 +1,32 @@
 import Image from "next/image";
-const NewsCard = () => {
+import Link from "next/link";
+const NewsCard = ({ newsCardData }: any) => {
+  console.log("newsCardData", newsCardData);
   return (
-    <div className="flex py-4 w-full justify-between border-b-2" dir="rtl">
+    <Link
+      className="flex py-4 w-full justify-between border-b-2"
+      dir="rtl"
+      href={`/articles/${newsCardData.id}`}
+    >
       <main className="flex flex-col text-right justify-between">
-        <div className="text-black text-base">
-          مس مفتول روی رینگ صادراتی بورس کالا می‌رود
-        </div>
+        <div className="text-black text-base">{newsCardData?.title}</div>
         <article className="text-justify text-sm">
-          به گزارش تجارت‌نیوز، نحوه تسویه در این عرضه به صورت تسویه اعتباری به
-          صورت ۳۰ درصد نقدی به حساب بورس کالا در زمان تسویه و ۷۰ درصد اعتبار
-          اسنادی ۲ ماهه با کارمزد ماهیانه ۲.۴۵ درصد است{" "}
+          {newsCardData?.htmlContent}
         </article>
         <aside>ادامه ی مطلب</aside>
       </main>
       <div className="w-1/2 h-full">
         <Image
           className="drop-shadow-xl shadow-black rounded-full mx-auto"
-          src="/images/bourse.webp"
+          // src="/images/bourse.webp"
+          src={newsCardData?.thumbnail}
           width={200}
           height={200}
-          alt="Dave Gray"
+          alt="image"
           priority={true}
         />
       </div>
-    </div>
+    </Link>
   );
 };
 

@@ -8,14 +8,14 @@ import authReducer from "./slices/auth/authSlice";
 //apis
 import { userApi } from "@/redux/services/userApi";
 import { authApi } from "@/redux/services/auth/authApi";
-import { postApi } from "@/redux/services/post/postApi";
+import { articleApi } from "@/redux/services/article/articleApi";
 
 export const store = configureStore({
   reducer: {
     counterReducer,
     // Add the generated reducer as a specific top-level slice
     [authApi.reducerPath]: authApi.reducer,
-    [postApi.reducerPath]: postApi.reducer,
+    [articleApi.reducerPath]: articleApi.reducer,
     [userApi.reducerPath]: userApi.reducer,
     auth: authReducer,
   },
@@ -23,7 +23,7 @@ export const store = configureStore({
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({}).concat([
       authApi.middleware,
-      postApi.middleware,
+      articleApi.middleware,
       userApi.middleware,
     ]),
 });
