@@ -24,7 +24,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
       <body>
         <Providers>
           <Header />
-          <main className="flex items-center justify-center bg-red-50 w-full">
+          <main className="flex items-center justify-center w-full">
             <div className="w-4/5">{children}</div>
             <ToastProvider />
           </main>

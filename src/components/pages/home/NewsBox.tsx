@@ -1,7 +1,7 @@
 import NewsCard from "./NewsCard";
 const NewsBox = () => {
   return (
-    <div className="flex gap-2 w-full justify-center flex-col">
+    <div className="flex gap-8 w-full justify-center flex-col">
       <NewsCard />
       <NewsCard />
       <NewsCard />

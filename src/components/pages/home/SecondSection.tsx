@@ -1,10 +1,10 @@
 import NewsBox from "./NewsBox";
-import Topics from "./Topics";
+import LatestNews from "./LatestNews";
 const SecondSection = () => {
   return (
-    <div className="flex gap-2 w-full justify-between">
+    <div className="flex gap-2 w-full justify-between mb-[200px]">
       <div className="w-1/2">
-        <Topics />
+        <LatestNews />
       </div>
       <NewsBox />
     </div>

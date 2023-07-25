@@ -56,7 +56,7 @@ export const postApi = createApi({
         console.log("payload", payload);
         const { postId } = payload;
         return {
-          url: `/4`,
+          url: `/${postId}`,
           headers: {
             Accept: "*/*",
             "Content-Type": "application/json",

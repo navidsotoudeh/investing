@@ -2,8 +2,7 @@
 import { notFound } from "next/navigation";
 import Link from "next/link";
 import { useGetPostByIdQuery } from "@/redux/services/post/postApi";
-// import { useRouter } from "next/navigation";
-import { useRouter } from "next/router";
+import { useParams } from "next/navigation";
 
 export const revalidate = 86400;
 
@@ -14,13 +13,12 @@ type Props = {
 };
 
 export default function Article({ params: { postId } }: Props) {
-  const router = useRouter();
-  const { id, slug } = router.query;
-  console.log("router", router);
-  console.log("id", id);
+  // const router = useRouter();
+  const params = useParams();
+  console.log("params.acticleId", params.acticleId);
 
   const { data: articleData, isFetching: articleDataIsFetching } =
-    useGetPostByIdQuery("4");
+    useGetPostByIdQuery(params.acticleId);
   if (!articleData) notFound();
 
   const { meta, content } = articleData;
