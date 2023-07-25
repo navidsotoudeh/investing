@@ -6,6 +6,8 @@ import "suneditor/dist/css/suneditor.min.css";
 
 //api
 import { useCreateArticleMutation } from "@/redux/services/article/articleApi";
+import { useLogoutMutation } from "@/redux/services/auth/authApi";
+import { useSendFileMutation } from "@/redux/services/file/fileApi";
 
 //component
 import Button from "@/components/UIKit/Button";
@@ -25,6 +27,8 @@ const ProfileComponent = () => {
   } = useForm();
   const router = useRouter();
   const [createNewPost, { isLoading }] = useCreateArticleMutation();
+  const [logOut, { isLoading: logoutIsLoading }] = useLogoutMutation();
+  const [sendFile, { isLoading: sendFileIsLoading }] = useSendFileMutation();
 
   const onSubmit: SubmitHandler<FormValues> = (newPost) => {
     // dispatch(setContactForm(newContact))
@@ -43,6 +47,15 @@ const ProfileComponent = () => {
       })
       .catch(() => {});
   };
+  // const logoutHandler = () => {
+  //   router.push("/");
+  //   logOut()
+  //     .unwrap()
+  //     .then(() => {
+  //       console.log("54");
+  //     })
+  //     .catch(() => {});
+  // };
   //===============================================================
   const [shortDescription, setShortDescription] = useState<null | string>(null);
 
@@ -56,29 +69,29 @@ const ProfileComponent = () => {
     info: any,
     uploadHandler: any
   ) => {
-    // fileService
-    //   .uploadImage(files[0], FolderName.categoryImage)
-    //   .then((result: any) => {
-    //     uploadHandler({
-    //       result: [
-    //         {
-    //           url: `https://storage.dgland.dev/api/File/${FolderName.categoryImage}/${result.data}`,
-    //           name: "iphone13.jpg",
-    //           size: 1890,
-    //         },
-    //       ],
-    //     });
-    //     return undefined;
-    //   })
-    //   .catch((err) => console.log(err));
+    console.log("files[0]", files[0]);
+    sendFile(files[0])
+      .then((result: any) => {
+        uploadHandler({
+          result: [
+            {
+              url: `https://storage.dgland.dev/api/file/gallery`,
+              name: "iphone13.jpg",
+              size: 1890,
+            },
+          ],
+        });
+        return undefined;
+      })
+      .catch((err) => console.log(err));
   };
   const shortDescriptionHandler = (evt: any) => {
-    const shortDescription = evt.editor.getData();
+    const shortDescription = evt?.editor?.getData();
     setShortDescription(shortDescription);
   };
   //===============================================================
   return (
-    <div className="container" dir="ltr">
+    <div className="container" dir="rtl">
       <h1 className="text-2xl font-bold">ارسال پست</h1>
 
       <form
@@ -113,34 +126,6 @@ const ProfileComponent = () => {
           )}
         </div>
         {/*===============================================================================*/}
-        {/*<div className="col-span-2 flex h-11 flex-col desktop:col-span-1">*/}
-        {/*  <Controller*/}
-        {/*    name="status"*/}
-        {/*    control={control}*/}
-        {/*    defaultValue=""*/}
-        {/*    rules={{*/}
-        {/*      required: "status اجباری است",*/}
-        {/*    }}*/}
-        {/*    render={({ field: { onChange, value } }) => (*/}
-        {/*      <Input*/}
-        {/*        type="text"*/}
-        {/*        label="status"*/}
-        {/*        hasError={!!errors.status}*/}
-        {/*        value={value}*/}
-        {/*        onChange={onChange}*/}
-        {/*      />*/}
-        {/*    )}*/}
-        {/*  />*/}
-        {/*  {!!errors.status && (*/}
-        {/*    <Text*/}
-        {/*      variant="caption2"*/}
-        {/*      className="flex w-full items-start text-Error-60"*/}
-        {/*    >*/}
-        {/*      {`${errors?.status?.message}`}*/}
-        {/*    </Text>*/}
-        {/*  )}*/}
-        {/*</div>*/}
-
         <div className="col-span-2 flex h-11 flex-col desktop:col-span-1">
           <Controller
             name="status"
@@ -253,78 +238,78 @@ const ProfileComponent = () => {
             </Text>
           )}
         </div>
-        {/*<div className="w-full">*/}
-        {/*  <SunEditor*/}
-        {/*    setDefaultStyle="font-family:Vazirmatn; height:auto"*/}
-        {/*    autoFocus={true}*/}
-        {/*    onChange={shortDescriptionHandler}*/}
-        {/*    onImageUploadBefore={onImageUploadBeforeShortDescription}*/}
-        {/*    // onImageUpload={handleImageUpload}*/}
-        {/*    getSunEditorInstance={getSunEditorInstanceShortDescription}*/}
-        {/*    setOptions={{*/}
-        {/*      minHeight: "300px",*/}
-        {/*      // resizingBar: false,*/}
-        {/*      // resizeEnable: true,*/}
-        {/*      rtl: true,*/}
-        {/*      buttonList: [*/}
-        {/*        [*/}
-        {/*          "font",*/}
-        {/*          "fontSize",*/}
-        {/*          "formatBlock",*/}
-        {/*          "bold",*/}
-        {/*          "fontColor",*/}
-        {/*          "list",*/}
-        {/*          "dir",*/}
-        {/*          "align",*/}
-        {/*          "image",*/}
-        {/*          "table",*/}
-        {/*          "link",*/}
-        {/*          "outdent",*/}
-        {/*          "indent",*/}
-        {/*          "preview",*/}
-        {/*        ],*/}
-        {/*        [*/}
-        {/*          "-right",*/}
-        {/*          ":i-More Misc-default.more_vertical",*/}
-        {/*          "undo",*/}
-        {/*          "redo",*/}
-        {/*          "blockquote",*/}
-        {/*          "underline",*/}
-        {/*          "italic",*/}
-        {/*          "strike",*/}
-        {/*          "removeFormat",*/}
-        {/*          "hiliteColor",*/}
-        {/*          "subscript",*/}
-        {/*          "superscript",*/}
-        {/*          "textStyle",*/}
-        {/*          "horizontalRule",*/}
-        {/*          "lineHeight",*/}
-        {/*          "video",*/}
-        {/*          // 'imageGallery',*/}
-        {/*          "showBlocks",*/}
-        {/*          // 'codeView',*/}
-        {/*          // 'save',*/}
-        {/*        ],*/}
-        {/*      ],*/}
-        {/*      imageGalleryUrl: "https://www.shutterstock.com/search/cdn",*/}
-        {/*      imageGalleryHeader: { key: "images" },*/}
-        {/*      font: [*/}
-        {/*        "Vazirmatn",*/}
-        {/*        "Arial",*/}
-        {/*        "Comic Sans MS",*/}
-        {/*        "Courier New",*/}
-        {/*        "Impact",*/}
-        {/*      ],*/}
-        {/*    }}*/}
-        {/*    // defaultValue={}*/}
-        {/*    // readOnly={true}*/}
-        {/*    // hideToolbar={true}*/}
-        {/*    // disableToolbar={true}*/}
-        {/*    // disable={true}*/}
+        <div className="w-full">
+          <SunEditor
+            setDefaultStyle="font-family:Vazirmatn; height:auto"
+            autoFocus={true}
+            onChange={shortDescriptionHandler}
+            onImageUploadBefore={onImageUploadBeforeShortDescription}
+            // onImageUpload={handleImageUpload}
+            getSunEditorInstance={getSunEditorInstanceShortDescription}
+            setOptions={{
+              minHeight: "300px",
+              // resizingBar: false,
+              // resizeEnable: true,
+              rtl: true,
+              buttonList: [
+                [
+                  "font",
+                  "fontSize",
+                  "formatBlock",
+                  "bold",
+                  "fontColor",
+                  "list",
+                  "dir",
+                  "align",
+                  "image",
+                  "table",
+                  "link",
+                  "outdent",
+                  "indent",
+                  "preview",
+                ],
+                [
+                  "-right",
+                  ":i-More Misc-default.more_vertical",
+                  "undo",
+                  "redo",
+                  "blockquote",
+                  "underline",
+                  "italic",
+                  "strike",
+                  "removeFormat",
+                  "hiliteColor",
+                  "subscript",
+                  "superscript",
+                  "textStyle",
+                  "horizontalRule",
+                  "lineHeight",
+                  "video",
+                  // 'imageGallery',
+                  "showBlocks",
+                  // 'codeView',
+                  // 'save',
+                ],
+              ],
+              imageGalleryUrl: "https://www.shutterstock.com/search/cdn",
+              imageGalleryHeader: { key: "images" },
+              font: [
+                "Vazirmatn",
+                "Arial",
+                "Comic Sans MS",
+                "Courier New",
+                "Impact",
+              ],
+            }}
+            // defaultValue={}
+            // readOnly={true}
+            // hideToolbar={true}
+            // disableToolbar={true}
+            // disable={true}
 
-        {/*    // onSave={handleSavePost}*/}
-        {/*  />*/}
-        {/*</div>*/}
+            // onSave={handleSavePost}
+          />
+        </div>
 
         <Button
           label="ارسال پست"
@@ -332,6 +317,12 @@ const ProfileComponent = () => {
           onClick={handleSubmit((d) => onSubmit(d as FormValues))}
           // loading={isLoading}
         />
+        {/*<div*/}
+        {/*  className="w-[110px] h-[70px] bg-amber-100 hover:cursor-pointer"*/}
+        {/*  onClick={() => logoutHandler()}*/}
+        {/*>*/}
+        {/*  log out user*/}
+        {/*</div>*/}
       </form>
     </div>
   );

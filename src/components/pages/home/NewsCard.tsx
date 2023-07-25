@@ -1,7 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
 const NewsCard = ({ newsCardData }: any) => {
-  console.log("newsCardData", newsCardData);
   return (
     <Link
       className="flex py-4 w-full justify-between border-b-2"

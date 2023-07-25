@@ -1,5 +1,6 @@
 "use client";
 import React from "react";
+import { useRouter } from "next/navigation";
 import { toast } from "react-toastify";
 import { useForm, Controller } from "react-hook-form";
 import "suneditor/dist/css/suneditor.min.css";
@@ -24,7 +25,7 @@ const LoginComponent = () => {
     formState: { errors },
     reset,
   } = useForm<IFormValues>();
-
+  const router = useRouter();
   const [login, { isLoading: loggingIsLoading }] = useLoginUserMutation();
   // const [signup, { isLoading: signupIsLoading }] = useSignupUserMutation();
 
@@ -36,6 +37,7 @@ const LoginComponent = () => {
           <ToastUI title="ورود با موفقیت صورت گرفت." type={"success"} />
         );
         reset();
+        router.push("/profile");
       })
       .catch(() => {});
   };

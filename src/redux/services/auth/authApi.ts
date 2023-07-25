@@ -1,6 +1,5 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 import { setCredentials, logOut } from "../../slices/auth/authSlice";
-import Router from "next/router";
 import Cookies from "js-cookie";
 
 export const authApi = createApi({
@@ -49,38 +48,23 @@ export const authApi = createApi({
             }
           });
       },
-      // async onQueryStarted(data, { queryFulfilled, dispatch }) {
-      //   Cookies.set("investing-accessToken", "654-rm-accessToken123456");
-      //   // dispatch(userLoggedIn(data.accessToken))
-      //   dispatch(setCredentials("654-rm-accessToken123456"));
-      //   try {
-      //     // const { data } = await queryFulfilled
-      //     // // localStorage.setItem('investing-accessToken', data.accessToken)
-      //     // setCookie('investing-accessToken', data.accessToken)
-      //     // dispatch(userLoggedIn(data.accessToken))
-      //   } catch {}
-      // },
     }),
-    sendLogout: builder.mutation({
+    logout: builder.mutation({
       query: () => ({
         url: "/auth/logout",
         method: "POST",
       }),
       async onQueryStarted(arg, { dispatch, queryFulfilled }) {
-        Router.push("/");
         // dispatch(logOut());
-        Cookies.remove("investing-accessToken");
-        // try {
-        //   const { data } = await queryFulfilled
-        //   console.log(data)
-        //   Router.push('/')
-        //   dispatch(logOut())
-        //   setTimeout(() => {
-        //     dispatch(apiSlice.util.resetApiState())
-        //   }, 1000)
-        // } catch (err) {
-        //   console.log(err)
-        // }
+        try {
+          const { data } = await queryFulfilled;
+          Cookies.remove("investing-accessToken");
+          // setTimeout(() => {
+          //   dispatch(apiSlice.util.resetApiState())
+          // }, 1000)
+        } catch (err) {
+          console.log(err);
+        }
       },
     }),
     sendPasswordResetEmailUser: builder.mutation({
@@ -124,10 +108,10 @@ export const authApi = createApi({
 });
 
 export const {
-  useSendLogoutMutation,
   useResetPasswordMutation,
   useSignupUserMutation,
   useLoginUserMutation,
+  useLogoutMutation,
   useSendPasswordResetEmailUserMutation,
   useChangeUserPasswordMutation,
 } = authApi;

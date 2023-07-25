@@ -10,12 +10,7 @@ const Profile = () => {
     };
   }, []);
 
-  return (
-    <div className="w-full">
-      پروفایل
-      <ProfileComponent />
-    </div>
-  );
+  return <ProfileComponent />;
 };
 
 export default Profile;

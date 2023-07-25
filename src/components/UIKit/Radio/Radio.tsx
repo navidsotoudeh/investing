@@ -110,7 +110,7 @@ const Radio: React.FC<IProps> = (props) => {
               ref={ref}
             >
               <div
-                className={`flex h-[50px] w-[50px] items-center justify-center rounded-full
+                className={`flex h-[20px] w-[20px] items-center justify-center rounded-full
                  ${
                    items.filter((ele: any) => ele.id === index)[0]?.isHovered
                      ? "border border-primary-60"
@@ -141,13 +141,7 @@ const Radio: React.FC<IProps> = (props) => {
                     }
                 
                          `}
-              >
-                {items.filter((ele: any) => ele.id === index)[0]?.isChecked && (
-                  <span
-                    className={`flex h-[25px] w-[25px] items-center justify-center rounded-full bg-white`}
-                  />
-                )}
-              </div>
+              ></div>
               <span
                 className={`${isDisabled ? "text-text-20" : "text-teal-60"}`}
               >
