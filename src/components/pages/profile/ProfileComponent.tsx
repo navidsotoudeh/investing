@@ -47,15 +47,6 @@ const ProfileComponent = () => {
       })
       .catch(() => {});
   };
-  // const logoutHandler = () => {
-  //   router.push("/");
-  //   logOut()
-  //     .unwrap()
-  //     .then(() => {
-  //       console.log("54");
-  //     })
-  //     .catch(() => {});
-  // };
   //===============================================================
   const [shortDescription, setShortDescription] = useState<null | string>(null);
 
@@ -93,7 +84,6 @@ const ProfileComponent = () => {
   return (
     <div className="container" dir="rtl">
       <h1 className="text-2xl font-bold">ارسال پست</h1>
-
       <form
         className="flex flex-col w-full gap-6 p-4 "
         onSubmit={handleSubmit(onSubmit)}
@@ -306,23 +296,15 @@ const ProfileComponent = () => {
             // hideToolbar={true}
             // disableToolbar={true}
             // disable={true}
-
             // onSave={handleSavePost}
           />
         </div>
-
         <Button
           label="ارسال پست"
           size="large"
           onClick={handleSubmit((d) => onSubmit(d as FormValues))}
           // loading={isLoading}
         />
-        {/*<div*/}
-        {/*  className="w-[110px] h-[70px] bg-amber-100 hover:cursor-pointer"*/}
-        {/*  onClick={() => logoutHandler()}*/}
-        {/*>*/}
-        {/*  log out user*/}
-        {/*</div>*/}
       </form>
     </div>
   );

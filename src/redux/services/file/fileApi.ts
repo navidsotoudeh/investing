@@ -11,7 +11,7 @@ export const fileApi = createApi({
         return {
           url: "/image",
           method: "POST",
-          body: { ...fileData },
+          body: fileData,
           headers: {
             "Content-type": "application/json; charset=UTF-8",
             authorization: `Bearer ${Cookies.get("investing-accessToken")}`,
@@ -25,8 +25,6 @@ export const fileApi = createApi({
       //   try {
       //     // const { data } = await queryFulfilled
       //     // // localStorage.setItem('investing-accessToken', data.accessToken)
-      //     // setCookie('investing-accessToken', data.accessToken)
-      //     // dispatch(userLoggedIn(data.accessToken))
       //   } catch {}
       // },
     }),
