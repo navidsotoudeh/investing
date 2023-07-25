@@ -54,9 +54,8 @@ export const postApi = createApi({
     getPostById: builder.query<any, any>({
       query: (payload) => {
         console.log("payload", payload);
-        const { postId } = payload;
         return {
-          url: `/${postId}`,
+          url: `/${Number(payload)}`,
           headers: {
             Accept: "*/*",
             "Content-Type": "application/json",
