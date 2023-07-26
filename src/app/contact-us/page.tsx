@@ -11,8 +11,7 @@ const ContactUs = () => {
   }, []);
 
   return (
-    <div className="w-full">
-      <p>{name} - مشاور کسب و کار شما </p>
+    <div className="w-full my-4" dir="rtl">
       <ContactUsForm />
     </div>
   );

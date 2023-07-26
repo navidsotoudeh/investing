@@ -1,9 +1,10 @@
+import Text from "../../../components/UIKit/Text/Text";
 const TeamMembersPage = () => {
   return (
-    <div className="flex flex-col w-full">
-      <p>اعضای تیم</p>
-      <p>نوید</p>
-      <p>روح الله</p>
+    <div className="flex flex-col w-full" dir="rtl">
+      <Text htmlTag="h2" variant="h2">
+        اعضای تیم متشکل از :{" "}
+      </Text>
     </div>
   );
 };

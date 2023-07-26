@@ -20,15 +20,14 @@ const ContactUsForm = () => {
 
   return (
     <div className="container mx-auto">
-      <h1 className="text-2xl font-bold mb-4">Contact Us</h1>
-
+      <h1 className="text-2xl font-bold mb-4">ارتباط با ما</h1>
       <form
-        className="flex flex-col w-full gap-6 p-4 "
+        className="flex flex-col w-full gap-6 p-4"
         onSubmit={handleSubmit(onSubmit)}
       >
         <div className="mb-4">
           <label className="block text-gray-700 text-sm font-bold mb-2">
-            Name
+            نام
           </label>
           <input
             type="text"
@@ -38,13 +37,13 @@ const ContactUsForm = () => {
             }`}
           />
           {errors.name && (
-            <p className="text-red-500 text-xs italic">Name is required</p>
+            <p className="text-red-500 text-xs italic">نام اجباری می باشد.</p>
           )}
         </div>
 
         <div className="mb-4">
           <label className="block text-gray-700 text-sm font-bold mb-2">
-            Email
+            ایمیل
           </label>
           <input
             type="email"
@@ -55,14 +54,14 @@ const ContactUsForm = () => {
           />
           {errors.email && (
             <p className="text-red-500 text-xs italic">
-              Please enter a valid email address.
+              لطفا ایمیل صحیح وارد نمایید.
             </p>
           )}
         </div>
 
         <div className="mb-4">
           <label className="block text-gray-700 text-sm font-bold mb-2">
-            Message
+            پیام
           </label>
           <textarea
             name="message"
@@ -71,12 +70,14 @@ const ContactUsForm = () => {
             }`}
           ></textarea>
           {errors.message && (
-            <p className="text-red-500 text-xs italic">Message is required</p>
+            <p className="text-red-500 text-xs italic">
+              لطفا پیام خود را ثبت کنید.
+            </p>
           )}
         </div>
 
         <Button
-          label="ثبت فرم"
+          label="ثبت پیام"
           size="large"
           onClick={handleSubmit((d) => onSubmit(d as FormValues))}
           // loading={isLoading}
