@@ -5,11 +5,8 @@ import { FaVideo } from "react-icons/fa";
 import Text from "../../UIKit/Text";
 const FirstSection = () => {
   return (
-    <div
-      className="flex gap-2 w-full py-2 justify-between bg-red-100"
-      dir="rtl"
-    >
-      <div className="w-1/2 text-right bg-yellow-100">
+    <div className="flex gap-2 w-full py-2 justify-between" dir="rtl">
+      <div className="w-1/2 text-right">
         <Text variant="h2" htmlTag="h1">
           بوم‌بان
         </Text>
@@ -20,18 +17,24 @@ const FirstSection = () => {
           قبل از هرگونه خرید، فروش و اجاره، ملک، مورد بازبینی قرار داده و گزارشی
           کامل از وضعیت فنی ملک دراختیار شما قرار خواهد داد.
         </Text>
-        <div className="text-justify">
-          <span>بوم‌بان چه میکند، ببینید</span>
-          <button className="appbtn">
-            <FaVideo color="#FFF" />
-          </button>
+        <div className="text-justify mt-2">
+          <Text variant="body1" htmlTag="p" className="text-justify">
+            بوم‌بان چه میکند :
+          </Text>
         </div>
         <ul className="">
-          <li>پیشگیری از حوادث و کاهش خسارات</li>
-          <li>کاهش هزینه های تعمیرات</li>
-          <li>مجهز به ابزاردقیق مهندسی روز دنیا</li>
-          <li>سامانه برخط درخواست و پیگیری</li>
-          <li>اطمینان خاطر برای ساکنین ساختمان</li>
+          <Text variant="body1" htmlTag="p" className="text-justify">
+            پیشگیری از حوادث و کاهش خسارات
+          </Text>
+          <Text variant="body1" htmlTag="p" className="text-justify">
+            کاهش هزینه های تعمیرات
+          </Text>
+          <Text variant="body1" htmlTag="p" className="text-justify">
+            مجهز به ابزاردقیق مهندسی روز دنیا
+          </Text>
+          <Text variant="body1" htmlTag="p" className="text-justify">
+            سامانه برخط درخواست و پیگیری
+          </Text>
         </ul>
       </div>
       <Image

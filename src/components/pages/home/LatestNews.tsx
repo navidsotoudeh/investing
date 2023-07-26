@@ -15,7 +15,7 @@ const LatestNews = () => {
         variant="body1"
         className="my-8 mb-36 text-justify text-dark_grey"
       >
-        اخرین اخبار
+        محل قرارگیری اخرین اخبار
       </Text>
     </div>
   );
