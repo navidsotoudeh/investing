@@ -1,8 +1,9 @@
 "use client";
-import React, { useRef, useState } from "react";
+import React, { useRef } from "react";
 import { Controller, useForm, SubmitHandler } from "react-hook-form";
 import SunEditor from "suneditor-react";
 import "suneditor/dist/css/suneditor.min.css";
+import axios from "axios";
 
 //api
 import { useCreateArticleMutation } from "@/redux/services/article/articleApi";
@@ -17,6 +18,7 @@ import Text from "@/components/UIKit/Text";
 import { useRouter } from "next/navigation";
 //type
 import { FormValues } from "./ProfileComponentInterface";
+import Cookies from "js-cookie";
 
 const ProfileComponent = () => {
   const {
@@ -36,19 +38,17 @@ const ProfileComponent = () => {
       .unwrap()
       .then(() => {
         // toast.success(
-        //     <ToastUI
-        //         title="پست با موفقیت ثبت شد."
-        //         //subtitle={'متن خط دوم'}
-        //         subtitle={null}
-        //         type={'success'}
-        //     />
-        // )
+        //   <ToastUI
+        //     title="پست با موفقیت ثبت شد."
+        //     //subtitle={'متن خط دوم'}
+        //     subtitle={null}
+        //     type={"success"}
+        //   />
+        // );
         router.push("/articles");
       })
       .catch(() => {});
   };
-  //===============================================================
-  const [shortDescription, setShortDescription] = useState<null | string>(null);
 
   const refEditorShortDescription = useRef<any>();
 
@@ -60,25 +60,29 @@ const ProfileComponent = () => {
     info: any,
     uploadHandler: any
   ) => {
-    console.log("files[0]", files[0]);
-    sendFile(files[0])
-      .then((result: any) => {
+    const formData = new FormData();
+    formData.append("file", files[0]);
+    axios
+      .post("http://localhost:3000/file/image", formData, {
+        headers: {
+          "Content-Type": "multipart/form-data",
+          Authorization: `Bearer ${Cookies.get("investing-accessToken")}`,
+        },
+      })
+      .then(function (response) {
         uploadHandler({
           result: [
             {
-              url: `https://storage.dgland.dev/api/file/gallery`,
-              name: "iphone13.jpg",
+              url: `http://localhost:3000/file/${response.data.filepath}`,
+              name: `${response.data.filename}`,
               size: 1890,
             },
           ],
         });
-        return undefined;
       })
-      .catch((err) => console.log(err));
-  };
-  const shortDescriptionHandler = (evt: any) => {
-    const shortDescription = evt?.editor?.getData();
-    setShortDescription(shortDescription);
+      .catch(function (error) {
+        console.log(error);
+      });
   };
   //===============================================================
   return (
@@ -88,6 +92,12 @@ const ProfileComponent = () => {
         className="flex flex-col w-full gap-6 p-4 "
         onSubmit={handleSubmit(onSubmit)}
       >
+        <Button
+          label="ارسال پست"
+          size="large"
+          onClick={handleSubmit((d) => onSubmit(d as FormValues))}
+          // loading={isLoading}
+        />
         <div className="col-span-2 flex h-11 flex-col desktop:col-span-1">
           <Controller
             name="title"
@@ -146,34 +156,6 @@ const ProfileComponent = () => {
             </Text>
           )}
         </div>
-        {/*===============================================================================*/}
-        <div className="col-span-2 flex h-11 flex-col desktop:col-span-1">
-          <Controller
-            name="htmlContent"
-            control={control}
-            defaultValue=""
-            rules={{
-              required: "htmlContent اجباری است",
-            }}
-            render={({ field: { onChange, value } }) => (
-              <Input
-                type="text"
-                label="htmlContent"
-                hasError={!!errors.htmlContent}
-                value={value}
-                onChange={onChange}
-              />
-            )}
-          />
-          {!!errors.htmlContent && (
-            <Text
-              variant="caption2"
-              className="flex w-full items-start text-Error-60"
-            >
-              {`${errors?.htmlContent?.message}`}
-            </Text>
-          )}
-        </div>
         <div className="col-span-2 flex h-11 flex-col desktop:col-span-1">
           <Controller
             name="thumbnail"
@@ -228,83 +210,95 @@ const ProfileComponent = () => {
             </Text>
           )}
         </div>
-        <div className="w-full">
-          <SunEditor
-            setDefaultStyle="font-family:Vazirmatn; height:auto"
-            autoFocus={true}
-            onChange={shortDescriptionHandler}
-            onImageUploadBefore={onImageUploadBeforeShortDescription}
-            // onImageUpload={handleImageUpload}
-            getSunEditorInstance={getSunEditorInstanceShortDescription}
-            setOptions={{
-              minHeight: "300px",
-              // resizingBar: false,
-              // resizeEnable: true,
-              rtl: true,
-              buttonList: [
-                [
-                  "font",
-                  "fontSize",
-                  "formatBlock",
-                  "bold",
-                  "fontColor",
-                  "list",
-                  "dir",
-                  "align",
-                  "image",
-                  "table",
-                  "link",
-                  "outdent",
-                  "indent",
-                  "preview",
-                ],
-                [
-                  "-right",
-                  ":i-More Misc-default.more_vertical",
-                  "undo",
-                  "redo",
-                  "blockquote",
-                  "underline",
-                  "italic",
-                  "strike",
-                  "removeFormat",
-                  "hiliteColor",
-                  "subscript",
-                  "superscript",
-                  "textStyle",
-                  "horizontalRule",
-                  "lineHeight",
-                  "video",
-                  // 'imageGallery',
-                  "showBlocks",
-                  // 'codeView',
-                  // 'save',
-                ],
-              ],
-              imageGalleryUrl: "https://www.shutterstock.com/search/cdn",
-              imageGalleryHeader: { key: "images" },
-              font: [
-                "Vazirmatn",
-                "Arial",
-                "Comic Sans MS",
-                "Courier New",
-                "Impact",
-              ],
+        <div className="col-span-2 flex h-11 flex-col desktop:col-span-1">
+          <Controller
+            name="htmlContent"
+            control={control}
+            defaultValue=""
+            rules={{
+              required: "htmlContent اجباری است",
             }}
-            // defaultValue={}
-            // readOnly={true}
-            // hideToolbar={true}
-            // disableToolbar={true}
-            // disable={true}
-            // onSave={handleSavePost}
+            render={({ field: { onChange, value } }) => (
+              <SunEditor
+                setDefaultStyle="font-family:Vazirmatn; height:auto"
+                autoFocus={true}
+                onChange={onChange}
+                onImageUploadBefore={onImageUploadBeforeShortDescription}
+                // onImageUpload={handleImageUpload}
+                getSunEditorInstance={getSunEditorInstanceShortDescription}
+                setOptions={{
+                  minHeight: "300px",
+                  // resizingBar: false,
+                  // resizeEnable: true,
+                  rtl: true,
+                  buttonList: [
+                    [
+                      "font",
+                      "fontSize",
+                      "formatBlock",
+                      "bold",
+                      "fontColor",
+                      "list",
+                      "dir",
+                      "align",
+                      "image",
+                      "table",
+                      "link",
+                      "outdent",
+                      "indent",
+                      "preview",
+                    ],
+                    [
+                      "-right",
+                      ":i-More Misc-default.more_vertical",
+                      "undo",
+                      "redo",
+                      "blockquote",
+                      "underline",
+                      "italic",
+                      "strike",
+                      "removeFormat",
+                      "hiliteColor",
+                      "subscript",
+                      "superscript",
+                      "textStyle",
+                      "horizontalRule",
+                      "lineHeight",
+                      "video",
+                      // 'imageGallery',
+                      "showBlocks",
+                      // 'codeView',
+                      // 'save',
+                    ],
+                  ],
+                  imageGalleryUrl: "https://www.shutterstock.com/search/cdn",
+                  imageGalleryHeader: { key: "images" },
+                  font: [
+                    "Vazirmatn",
+                    "Arial",
+                    "Comic Sans MS",
+                    "Courier New",
+                    "Impact",
+                  ],
+                }}
+                // defaultValue={}
+                // readOnly={true}
+                // hideToolbar={true}
+                // disableToolbar={true}
+                // disable={true}
+                // onSave={handleSavePost}
+              />
+            )}
           />
+          {!!errors.htmlContent && (
+            <Text
+              variant="caption2"
+              className="flex w-full items-start text-Error-60"
+            >
+              {`${errors?.htmlContent?.message}`}
+            </Text>
+          )}
         </div>
-        <Button
-          label="ارسال پست"
-          size="large"
-          onClick={handleSubmit((d) => onSubmit(d as FormValues))}
-          // loading={isLoading}
-        />
       </form>
     </div>
   );

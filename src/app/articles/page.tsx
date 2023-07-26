@@ -6,7 +6,7 @@ import ArticleCard from "../../components/pages/articles/ArticleCard";
 const Articles = () => {
   const { data: articlesData, isFetching: articlesDataIsFetching } =
     useGetArticlesQuery(
-      { params: { pageNumber: 1, pageSize: 6 } },
+      { params: { pageNumber: 1, pageSize: 10 } },
       { skip: !true, refetchOnMountOrArgChange: true }
     );
 

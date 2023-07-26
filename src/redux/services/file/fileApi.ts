@@ -7,11 +7,11 @@ export const fileApi = createApi({
   baseQuery: fetchBaseQuery({ baseUrl: "http://localhost:3000/file" }),
   endpoints: (builder) => ({
     sendFile: builder.mutation({
-      query: (fileData) => {
+      query: (formData) => {
         return {
           url: "/image",
           method: "POST",
-          body: fileData,
+          body: formData,
           headers: {
             "Content-type": "application/json; charset=UTF-8",
             authorization: `Bearer ${Cookies.get("investing-accessToken")}`,
