@@ -1,5 +1,6 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import type { RootState } from "../../store";
+import Cookies from "js-cookie";
 
 interface userTypes {
   accessToken: string | null;
@@ -8,7 +9,7 @@ interface userTypes {
 
 const initialState: userTypes = {
   accessToken: "",
-  isAuthenticated: false,
+  isAuthenticated: !!Cookies.get("investing-accessToken"),
 };
 
 const authSlice = createSlice({

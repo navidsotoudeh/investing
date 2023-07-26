@@ -45,15 +45,15 @@ const Header = () => {
           <FaUserCircle size={24} color="white" />
         </Link>
         <div
-          className={`absolute left-[30px] hover:cursor-pointer w-[100px] bg-gray-100 text-black rounded-xl flex justify-center items-center ${
+          className={`absolute left-[30px] hover:cursor-pointer w-[100px] bg-gray-100 text-black rounded-xl flex justify-center items-center py-1 ${
             showTooltip ? "block" : "hidden"
           }`}
         >
           {isAuthenticated && (
-            <div onClick={() => dispatch(logOut())}>Log out</div>
+            <div onClick={() => dispatch(logOut())}>log out</div>
           )}
           {!isAuthenticated && (
-            <div onClick={() => router.push("/profile")}>Log in</div>
+            <div onClick={() => router.push("/profile")}>log in</div>
           )}
         </div>
       </div>

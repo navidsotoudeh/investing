@@ -8,13 +8,11 @@ import SimplePagination from "../../components/common/pagination/SimplePaginatio
 
 const Articles = () => {
   const [pageNumber, setPageNumber] = useState(1);
-  console.log("pageNumber", pageNumber);
   const { data: articlesData, isFetching: articlesDataIsFetching } =
     useGetArticlesQuery(
       { params: { page: pageNumber, pageSize: 3 } },
       { skip: !true, refetchOnMountOrArgChange: true }
     );
-  console.log("articlesData", articlesData);
   return (
     <div className="w-full py-4">
       {articlesData?.posts.map((articleData: any) => {

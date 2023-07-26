@@ -23,9 +23,7 @@ export const articleApi = createApi({
       },
       async onQueryStarted(arg, { dispatch, queryFulfilled }) {
         await queryFulfilled
-          .then((res) => {
-            console.log("aaaa28");
-          })
+          .then((res) => {})
           .catch((err) => {
             arg;
             // '@ts-expect-error'
@@ -53,7 +51,6 @@ export const articleApi = createApi({
     }),
     getArticleById: builder.query<any, any>({
       query: (payload) => {
-        console.log("payload", payload);
         return {
           url: `/${Number(payload)}`,
           headers: {

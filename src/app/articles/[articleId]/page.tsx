@@ -15,7 +15,7 @@ const Article = () => {
   const params = useParams();
   const { data: articleData, isFetching: articleDataIsFetching } =
     useGetArticleByIdQuery(params.articleId);
-  console.log("articleData", articleData);
+
   return (
     <div dir="rtl" className="flex flex-col gap-8">
       <div>breadcrumb</div>
