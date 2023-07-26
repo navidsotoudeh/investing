@@ -7,7 +7,7 @@ import ArticleCard from "../../components/pages/articles/ArticleCard";
 import SimplePagination from "../../components/common/pagination/SimplePagination";
 
 const Articles = () => {
-  const [pageNumber, setPageNumber] = useState();
+  const [pageNumber, setPageNumber] = useState(1);
   console.log("pageNumber", pageNumber);
   const { data: articlesData, isFetching: articlesDataIsFetching } =
     useGetArticlesQuery(

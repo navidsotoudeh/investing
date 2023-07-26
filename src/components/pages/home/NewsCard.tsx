@@ -9,9 +9,14 @@ const NewsCard = ({ newsCardData }: any) => {
     >
       <main className="flex flex-col text-right justify-between">
         <div className="text-black text-base">{newsCardData?.title}</div>
-        <article className="text-justify text-sm">
-          {newsCardData?.htmlContent}
-        </article>
+
+        <article
+          className="text-justify text-sm"
+          dangerouslySetInnerHTML={{
+            __html: newsCardData?.htmlContent,
+          }}
+        ></article>
+
         <aside>ادامه ی مطلب</aside>
       </main>
       <div className="w-1/2 h-full">

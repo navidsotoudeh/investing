@@ -1,8 +1,7 @@
 import { FaChevronRight } from "react-icons/fa";
 import { usePagination, DOTS } from "./usePagination";
 
-//styles are in /styles/pagination.css and imported in globals.css
-
+// @ts-ignore
 const Pagination = (props) => {
   const {
     onPageChange,
@@ -19,7 +18,7 @@ const Pagination = (props) => {
     pageSize,
   });
 
-  if (currentPage === 0 || paginationRange?.length < 2) {
+  if (currentPage === 0 || (paginationRange?.length ?? 1) < 2) {
     return null;
   }
 
@@ -31,7 +30,9 @@ const Pagination = (props) => {
     onPageChange(currentPage - 1);
   };
 
-  const lastPage = paginationRange[paginationRange?.length - 1];
+  const lastPage = paginationRange?.length
+    ? paginationRange[paginationRange?.length - 1]
+    : 1;
   return (
     <ul className={`pagination-container mt-5`}>
       <li
@@ -43,7 +44,7 @@ const Pagination = (props) => {
           <FaChevronRight />
         </div>
       </li>
-      {paginationRange.map((pageNumber, index) => {
+      {paginationRange?.map((pageNumber, index) => {
         if (pageNumber === DOTS) {
           return (
             <li key={index} className="pagination-item dots">

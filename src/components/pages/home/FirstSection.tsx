@@ -5,8 +5,11 @@ import { FaVideo } from "react-icons/fa";
 import Text from "../../UIKit/Text";
 const FirstSection = () => {
   return (
-    <div className="flex gap-2 w-full py-2 justify-between" dir="rtl">
-      <div className="w-[300px] text-right">
+    <div
+      className="flex gap-2 w-full py-2 justify-between bg-red-100"
+      dir="rtl"
+    >
+      <div className="w-1/2 text-right bg-yellow-100">
         <Text variant="h2" htmlTag="h1">
           بوم‌بان
         </Text>
@@ -31,16 +34,14 @@ const FirstSection = () => {
           <li>اطمینان خاطر برای ساکنین ساختمان</li>
         </ul>
       </div>
-      <div className="w-[500px]">
-        <Image
-          src="/images/featured-lg.jpg"
-          alt="Hero box"
-          className="dark:invert"
-          width={500}
-          height={500}
-          priority
-        />
-      </div>
+      <Image
+        src="/images/inversting.webp"
+        alt="Hero box"
+        className="dark:invert"
+        width="500"
+        height="500"
+        priority
+      />
     </div>
   );
 };

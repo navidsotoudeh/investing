@@ -9,7 +9,7 @@ const LatestNews = () => {
     { title: "سیاست", quantity: 2 },
   ];
   return (
-    <div className="flex gap-2 w-full flex-col">
+    <div className="flex gap-2 w-full flex-col border-2 h-[200px] justify-center items-center">
       <Text
         htmlTag="p"
         variant="body1"
