@@ -44,18 +44,23 @@ const Header = () => {
         <Link href={"profile"} className="justify-self-end w-1/12">
           <FaUserCircle size={24} color="white" />
         </Link>
-        <div
-          className={`absolute left-[30px] hover:cursor-pointer w-[100px] bg-gray-100 text-black rounded-xl flex justify-center items-center py-1 ${
-            showTooltip ? "block" : "hidden"
-          }`}
-        >
-          {isAuthenticated && (
+        {isAuthenticated ? (
+          <div
+            className={`absolute left-[30px] hover:cursor-pointer w-[100px] bg-gray-100 text-black rounded-xl flex justify-center items-center py-1 ${
+              showTooltip ? "block" : "hidden"
+            }`}
+          >
             <div onClick={() => dispatch(logOut())}>log out</div>
-          )}
-          {!isAuthenticated && (
+          </div>
+        ) : (
+          <div
+            className={`absolute left-[30px] hover:cursor-pointer w-[100px] bg-gray-100 text-black rounded-xl flex justify-center items-center py-1 ${
+              showTooltip ? "block" : "hidden"
+            }`}
+          >
             <div onClick={() => router.push("/profile")}>log in</div>
-          )}
-        </div>
+          </div>
+        )}
       </div>
     </header>
   );
