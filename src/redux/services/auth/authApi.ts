@@ -1,7 +1,7 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 import { setCredentials, logOut } from "../../slices/auth/authSlice";
 import Cookies from "js-cookie";
-
+import { toast } from "react-toastify";
 export const authApi = createApi({
   reducerPath: "authApi",
   baseQuery: fetchBaseQuery({ baseUrl: "http://localhost:3000/auth" }),
@@ -55,13 +55,18 @@ export const authApi = createApi({
         method: "POST",
       }),
       async onQueryStarted(arg, { dispatch, queryFulfilled }) {
-        // dispatch(logOut());
         try {
           const { data } = await queryFulfilled;
           Cookies.remove("investing-accessToken");
-          // setTimeout(() => {
-          //   dispatch(apiSlice.util.resetApiState())
-          // }, 1000)
+          // This is the solution to clear RTK Query cache after log out
+          setTimeout(() => {
+            dispatch(authApi.util.resetApiState());
+          }, 1000);
+          toast("خروج با موفقیت صورت گرفت.", {
+            hideProgressBar: true,
+            autoClose: 1000,
+            type: "success",
+          });
         } catch (err) {
           console.log(err);
         }

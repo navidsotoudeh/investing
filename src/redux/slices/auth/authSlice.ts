@@ -1,4 +1,4 @@
-import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { createSlice } from "@reduxjs/toolkit";
 import type { RootState } from "../../store";
 import Cookies from "js-cookie";
 
@@ -21,9 +21,10 @@ const authSlice = createSlice({
       state.accessToken = access_token;
       state.isAuthenticated = true;
     },
-    logOut: (state, action) => {
+    logOut: (state) => {
       state.accessToken = null;
       state.isAuthenticated = false;
+      Cookies.remove("investing-accessToken");
     },
   },
 });

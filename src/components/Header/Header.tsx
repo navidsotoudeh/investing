@@ -16,7 +16,7 @@ const Header = () => {
   const router = useRouter();
   //selectors
   const isAuthenticated = useAppSelector(selectIsAuthenticated);
-  console.log("isAuthenticated", isAuthenticated);
+
   //states
   const [showTooltip, setShowTooltip] = useState(false);
 
