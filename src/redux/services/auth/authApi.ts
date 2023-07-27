@@ -14,17 +14,6 @@ export const authApi = createApi({
           body: { ...signupData },
         };
       },
-      // async onQueryStarted(data, { queryFulfilled, dispatch }) {
-      //   Cookies.set("investing-accessToken", "654-rm-accessToken123456");
-      //   // dispatch(userLoggedIn(data.accessToken))
-      //   dispatch(setCredentials("654-rm-accessToken123456"));
-      //   try {
-      //     // const { data } = await queryFulfilled
-      //     // // localStorage.setItem('investing-accessToken', data.accessToken)
-      //     // setCookie('investing-accessToken', data.accessToken)
-      //     // dispatch(userLoggedIn(data.accessToken))
-      //   } catch {}
-      // },
     }),
     loginUser: builder.mutation({
       query: (user) => {
@@ -37,7 +26,9 @@ export const authApi = createApi({
       async onQueryStarted(arg, { dispatch, queryFulfilled }) {
         await queryFulfilled
           .then((res) => {
+            console.log("res 29", res);
             Cookies.set("investing-accessToken", res?.data?.access_token);
+            Cookies.set("investing-refreshToken", res?.data?.refresh_token);
             dispatch(setCredentials(res?.data));
           })
           .catch((err) => {
@@ -49,9 +40,19 @@ export const authApi = createApi({
           });
       },
     }),
+    getNewAccessToken: builder.query<any, void>({
+      query: () => ({
+        url: "/refresh",
+        headers: {
+          Accept: "*/*",
+          "Content-Type": "application/json",
+          authorization: `Bearer ${Cookies.get("investing-refreshToken")}`,
+        },
+      }),
+    }),
     logout: builder.mutation({
       query: () => ({
-        url: "/auth/logout",
+        url: "/refresh",
         method: "POST",
       }),
       async onQueryStarted(arg, { dispatch, queryFulfilled }) {
@@ -96,7 +97,6 @@ export const authApi = createApi({
         };
       },
     }),
-
     changeUserPassword: builder.mutation({
       query: ({ actualData, token }) => {
         return {
@@ -113,10 +113,8 @@ export const authApi = createApi({
 });
 
 export const {
-  useResetPasswordMutation,
   useSignupUserMutation,
   useLoginUserMutation,
   useLogoutMutation,
-  useSendPasswordResetEmailUserMutation,
-  useChangeUserPasswordMutation,
+  useGetNewAccessTokenQuery,
 } = authApi;
