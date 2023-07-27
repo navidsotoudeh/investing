@@ -15,7 +15,7 @@ import {
 import Button from "../../UIKit/Button";
 import Input from "../../UIKit/Input";
 import Text from "../../UIKit/Text";
-import ToastUI from "../../UIKit/Toast";
+
 //type
 import { IFormValues } from "./LoginComponentInterface";
 const LoginComponent = () => {
@@ -33,18 +33,29 @@ const LoginComponent = () => {
     login(data)
       .unwrap()
       .then(() => {
-        toast.success(
-          <ToastUI title="ورود با موفقیت صورت گرفت." type={"success"} />
-        );
+        toast("ورود با موفقیت صورت گرفت.", {
+          hideProgressBar: true,
+          autoClose: 1000,
+          type: "success",
+        });
         reset();
         router.push("/profile");
       })
-      .catch(() => {});
+      .catch((err) => {
+        toast(err.data.message[0], {
+          hideProgressBar: true,
+          autoClose: 1000,
+          type: "error",
+        });
+      });
   };
 
   //===============================================================
   return (
-    <div className="container" dir="ltr">
+    <div className="container py-6" dir="rtl">
+      <Text variant="body1" htmlTag="span">
+        لطفا یوزنیم و پسورد خود را وارد نمایید.
+      </Text>
       <form
         className="flex flex-col w-full gap-6 p-4 "
         onSubmit={handleSubmit(onSubmit)}
@@ -103,7 +114,6 @@ const LoginComponent = () => {
             </Text>
           )}
         </div>
-
         <Button
           label="ورود"
           size="large"

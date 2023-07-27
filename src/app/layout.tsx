@@ -4,7 +4,8 @@ import "../styles/globals.css";
 // import { Inter } from "next/font/google";
 import Header from "@/components/Header/Header";
 import { Providers } from "@/redux/provider";
-import ToastProvider from "../components/UIKit/Toast/ToastProvider";
+import { ToastContainer } from "react-toastify";
+
 // const inter = Inter({ subsets: ["latin"] });
 //
 // const poppins = Poppins({
@@ -26,9 +27,9 @@ export default function RootLayout({ children }: { children: ReactNode }) {
           <Header />
           <main className="flex items-center justify-center w-full">
             <div className="w-4/5">{children}</div>
-            <ToastProvider />
           </main>
         </Providers>
+        <ToastContainer />
       </body>
     </html>
   );

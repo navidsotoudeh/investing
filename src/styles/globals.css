@@ -1,6 +1,7 @@
 @import './font_family.css';
 @import '../../public/assets/fonts/FontYekan/stylesheet.css';
 @import './pagination.css';
+@import 'react-toastify/dist/ReactToastify.css';
 @import '../components/UIKit/Input/Input.css';
 @import '../components/UIKit/Button/Button.css';
 @import '../components/UIKit/Text/Text.css';
