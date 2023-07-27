@@ -13,6 +13,8 @@ import Cookies from "js-cookie";
 export const withAuthentication: MiddlewareFactory = (next) => {
   return async (request: NextRequest, _next: NextFetchEvent) => {
     let token = request.cookies.get("investing-accessToken");
+    console.log("**token**", token);
+    console.log("**verifyToken**", verifyToken(token?.value));
     if (request.url.includes("/profile") && !verifyToken(token?.value)) {
       return NextResponse.redirect(
         new URL(`/login?backUrl=/profile`, request.url)

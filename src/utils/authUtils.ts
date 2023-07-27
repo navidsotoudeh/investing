@@ -8,8 +8,25 @@ export const decodeToken = (token: string) => {
   }
 };
 
-export const verifyToken = (token: any) => {
-  return !!token;
+export const verifyToken = async (accessToken) => {
+  if (!accessToken) {
+    // Access token is missing
+    return false;
+  }
+
+  try {
+    const { exp } = jwtDecode(accessToken);
+    console.log("exp", exp);
+    if (exp < Date.now() / 1000) {
+      // Access token has expired
+      // await refreshToken(); // Call the API function to refresh the token
+      // return true;
+    }
+    return true;
+  } catch (error) {
+    console.error("Error decoding token:", error);
+    return false;
+  }
 };
 
 export const saveTokenToCookie = (token: string) => {

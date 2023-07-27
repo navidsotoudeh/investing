@@ -6,7 +6,6 @@ import counterReducer from "./slices/counterSlice";
 import authReducer from "./slices/auth/authSlice";
 
 //apis
-import { userApi } from "@/redux/services/userApi";
 import { authApi } from "@/redux/services/auth/authApi";
 import { articleApi } from "@/redux/services/article/articleApi";
 import { fileApi } from "@/redux/services/file/fileApi";
@@ -16,7 +15,6 @@ export const store = configureStore({
     //api
     [authApi.reducerPath]: authApi.reducer,
     [articleApi.reducerPath]: articleApi.reducer,
-    [userApi.reducerPath]: userApi.reducer,
     [fileApi.reducerPath]: fileApi.reducer,
     // Add the generated reducer as a specific top-level slice
     auth: authReducer,
@@ -27,7 +25,6 @@ export const store = configureStore({
     getDefaultMiddleware({}).concat([
       authApi.middleware,
       articleApi.middleware,
-      userApi.middleware,
       fileApi.middleware,
     ]),
 });
