@@ -5,14 +5,14 @@ export const articleApi = createApi({
   reducerPath: "articleApi",
   baseQuery: fetchBaseQuery({
     // baseUrl: `${process.env.NEXT_PUBLIC_BACKEND_CORE_BASE_URL}/api`,
-    baseUrl: `http://localhost:3000/post`,
+    baseUrl: `https://investing-nta8.onrender.com/`,
   }),
 
   endpoints: (builder) => ({
     createArticle: builder.mutation({
       query: (newPost) => {
         return {
-          url: ``,
+          url: "/post",
           method: "POST",
           body: newPost,
           headers: {
@@ -37,7 +37,7 @@ export const articleApi = createApi({
       query: (payload) => {
         const { params } = payload;
         return {
-          url: "",
+          url: "post",
           headers: {
             Accept: "*/*",
             "Content-Type": "application/json",

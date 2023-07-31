@@ -4,7 +4,9 @@ import Cookies from "js-cookie";
 import { toast } from "react-toastify";
 export const authApi = createApi({
   reducerPath: "authApi",
-  baseQuery: fetchBaseQuery({ baseUrl: "http://localhost:3000/auth" }),
+  baseQuery: fetchBaseQuery({
+    baseUrl: "https://investing-nta8.onrender.com/auth",
+  }),
   endpoints: (builder) => ({
     signupUser: builder.mutation({
       query: (signupData) => {

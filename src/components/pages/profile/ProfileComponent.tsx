@@ -63,7 +63,7 @@ const ProfileComponent = () => {
     const formData = new FormData();
     formData.append("file", files[0]);
     axios
-      .post("http://localhost:3000/file/image", formData, {
+      .post("https://investing-nta8.onrender.com/file/image", formData, {
         headers: {
           "Content-Type": "multipart/form-data",
           Authorization: `Bearer ${Cookies.get("investing-accessToken")}`,
@@ -73,7 +73,7 @@ const ProfileComponent = () => {
         uploadHandler({
           result: [
             {
-              url: `http://localhost:3000/file/${response.data.filepath}`,
+              url: `https://investing-nta8.onrender.com/file/${response.data.filepath}`,
               name: `${response.data.filename}`,
               size: 1890,
             },

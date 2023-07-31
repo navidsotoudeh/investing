@@ -7,7 +7,9 @@ const nextConfig = {
       "cms.dg.land",
       "www.digikala.com",
       "learning.emofid.com",
+      "www.emofid.com",
       "rahavard365.com",
+      "cdn.arzdigital.com",
     ],
   },
 };

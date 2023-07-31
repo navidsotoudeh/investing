@@ -4,7 +4,9 @@ import Cookies from "js-cookie";
 
 export const fileApi = createApi({
   reducerPath: "fileApi",
-  baseQuery: fetchBaseQuery({ baseUrl: "http://localhost:3000/file" }),
+  baseQuery: fetchBaseQuery({
+    baseUrl: "https://investing-nta8.onrender.com/file",
+  }),
   endpoints: (builder) => ({
     sendFile: builder.mutation({
       query: (formData) => {
