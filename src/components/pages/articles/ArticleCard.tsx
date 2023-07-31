@@ -20,7 +20,14 @@ const ArticleCard: React.FC<ArticleCardProps> = ({ articleData }) => {
         {articleData.title}
       </Text>
       <div className="flex gap-2">
-        <Image src={articleData.thumbnail} alt="pic" width={150} height={150} />
+        <div>
+          <Image
+            src={articleData.thumbnail}
+            alt="pic"
+            width={300}
+            height={300}
+          />
+        </div>
         <div
           className="w-full"
           dangerouslySetInnerHTML={{
