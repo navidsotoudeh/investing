@@ -11,14 +11,24 @@ import { FaWhatsapp } from "react-icons/fa";
 import { AiOutlineMail } from "react-icons/ai";
 //component
 import Text from "../../../components/UIKit/Text/Text";
+import Breadcrumb from "../../../components/UIKit/Breadcrumb/Breadcrumb";
 const Article = () => {
   const params = useParams();
   const { data: articleData, isFetching: articleDataIsFetching } =
     useGetArticleByIdQuery(params.articleId);
 
+  console.log("articleData", articleData);
+  const items = [
+    { label: "خانه", href: "/" },
+    { label: "مقالات", href: "/articles" },
+    { label: `${articleData?.title}`, href: `${articleData?.id}` },
+  ];
+
   return (
     <div dir="rtl" className="flex flex-col gap-8">
-      <div>breadcrumb</div>
+      <div className="w-full py-2">
+        <Breadcrumb items={items} />
+      </div>
       <div className="border-2 border-gray-100 p-4">
         <Text htmlTag="h2" className="w-full py-4">
           {articleData?.title}
@@ -28,7 +38,7 @@ const Article = () => {
           dangerouslySetInnerHTML={{
             __html: articleData?.htmlContent,
           }}
-        ></article>
+        />
         <aside className="border-t mt-2 py-2 flex justify-between" dir="rtl">
           <div className="flex w-[300px] gap-2">
             <TelegramShareButton
