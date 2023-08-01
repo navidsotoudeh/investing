@@ -6,7 +6,11 @@ import { useRouter } from "next/navigation";
 //redux
 import { useAppDispatch, useAppSelector } from "@/redux/hooks";
 import { selectIsAuthenticated } from "@/redux/slices/auth/authSlice";
-import { logOut } from "../../redux/slices/auth/authSlice";
+import { logOut } from "@/redux/slices/auth/authSlice";
+
+//component
+import Text from "../../components/UIKit/Text/Text";
+
 //icons
 import { FaHome } from "react-icons/fa";
 import { FaUserCircle } from "react-icons/fa";
@@ -46,21 +50,27 @@ const Header = () => {
         </Link>
         <>
           {isAuthenticated ? (
-            <div
-              className={`absolute left-[30px] hover:cursor-pointer w-[100px] bg-gray-100 text-black rounded-xl flex justify-center items-center py-1 ${
+            <Text
+              className={`absolute left-[30px] hover:cursor-pointer w-[100px] bg-gray-100 text-black rounded-xl flex justify-center items-center py-4 ${
                 showTooltip ? "block" : "hidden"
               }`}
+              onClick={() => dispatch(logOut())}
+              htmlTag="h2"
+              variant="body2"
             >
-              <div onClick={() => dispatch(logOut())}>log out</div>
-            </div>
+              خروج
+            </Text>
           ) : (
-            <div
-              className={`absolute left-[30px] hover:cursor-pointer w-[100px] bg-gray-100 text-black rounded-xl flex justify-center items-center py-1 ${
+            <Text
+              onClick={() => router.push("/profile")}
+              className={`absolute left-[30px] hover:cursor-pointer w-[100px] bg-gray-100 text-black rounded-xl flex justify-center items-center py-4 ${
                 showTooltip ? "block" : "hidden"
               }`}
+              htmlTag="h2"
+              variant="body2"
             >
-              <div onClick={() => router.push("/profile")}>log in</div>
-            </div>
+              ورود
+            </Text>
           )}
         </>
       </div>

@@ -19,7 +19,9 @@ const NewsCard = ({ newsCardData }: any) => {
         >
           {newsCardData?.content}
         </Text>
-        <aside>ادامه ی مطلب</aside>
+        <Text htmlTag="span" variant="body3">
+          ادامه ی مطلب
+        </Text>
       </main>
       <div className="w-1/3 h-full">
         <Image
