@@ -13,7 +13,7 @@ import Aparat_Grey_Icon from "../../components/icons/footer/Aparat_Grey_Icon";
 const Footer = () => {
   return (
     <footer
-      className="w-full h-[100px] bg-[#e0e0e0] p-4 pb-8 flex justify-between"
+      className="w-full h-[100px] bg-[#e0e0e0] p-4 pb-8 flex justify-between "
       dir="rtl"
     >
       <div>

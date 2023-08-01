@@ -11,7 +11,7 @@ const ContactUs = () => {
   }, []);
 
   return (
-    <div className="w-full my-4" dir="rtl">
+    <div className="w-full my-4 bg-yellow-100" dir="rtl">
       <ContactUsForm />
     </div>
   );

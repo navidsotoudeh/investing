@@ -1,11 +1,16 @@
 import { ReactNode } from "react";
-import "../styles/globals.css";
 // import { Poppins } from "next/font/google";
 // import { Inter } from "next/font/google";
 import Header from "@/components/Header/Header";
 import { Providers } from "@/redux/provider";
 import { ToastContainer } from "react-toastify";
+
+//component
 import Footer from "@/components/Footer/Footer";
+import Head from "./head";
+
+//css
+import "../styles/globals.css";
 
 // const inter = Inter({ subsets: ["latin"] });
 //
@@ -22,16 +27,16 @@ export const metadata = {
 export default function RootLayout({ children }: { children: ReactNode }) {
   return (
     <html lang="en">
-      {/*<body className={`${poppins.className} ${inter.className}`}>*/}
+      <Head />
       <body>
         <Providers>
           <Header />
-          <main className="flex items-center justify-center w-full">
-            <div className="w-4/5">{children}</div>
+          <main dir="rtl" className="flex min-h-screen px-20 py-2">
+            {children}
           </main>
           <Footer />
+          <ToastContainer />
         </Providers>
-        <ToastContainer />
       </body>
     </html>
   );
