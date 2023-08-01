@@ -33,12 +33,14 @@ const Article = () => {
         <Text htmlTag="h2" className="w-full py-4">
           {articleData?.title}
         </Text>
-        <article
-          className="text-justify text-sm"
-          dangerouslySetInnerHTML={{
-            __html: articleData?.htmlContent,
-          }}
-        />
+        <Text variant="body2" htmlTag="span" className="text-justify">
+          <article
+            className="text-justify text-sm"
+            dangerouslySetInnerHTML={{
+              __html: articleData?.htmlContent,
+            }}
+          />
+        </Text>
         <aside className="border-t mt-2 py-2 flex justify-between" dir="rtl">
           <div className="flex w-[300px] gap-2">
             <TelegramShareButton

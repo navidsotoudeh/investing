@@ -33,12 +33,26 @@ const Header = () => {
         <div className="">
           <FaHome />
         </div>
-        <Link href="/stock-market">بورس</Link>
-        <Link href="/cryptocurrency">رمزارز</Link>
-        <Link href="/about-us/team-members">اعضای تیم</Link>
-        <Link href="/articles">مقالات</Link>
-        <Link href="/contact-us">تماس با ما</Link>
-        <Link href="/about-us">درباره‌ی ما</Link>
+        <Text variant="body2" htmlTag="span">
+          <Link href="/stock-market" className="font-mainFa ">
+            بورس
+          </Link>
+        </Text>
+        <Text variant="body2" htmlTag="span">
+          <Link href="/cryptocurrency">رمزارز</Link>
+        </Text>
+        <Text variant="body2" htmlTag="span">
+          <Link href="/about-us/team-members">اعضای تیم</Link>
+        </Text>
+        <Text variant="body2" htmlTag="span">
+          <Link href="/articles">مقالات</Link>
+        </Text>
+        <Text variant="body2" htmlTag="span">
+          <Link href="/contact-us">تماس با ما</Link>
+        </Text>
+        <Text variant="body2" htmlTag="span">
+          <Link href="/about-us">درباره‌ی ما</Link>
+        </Text>
       </div>
       <div
         onMouseEnter={() => setShowTooltip(true)}

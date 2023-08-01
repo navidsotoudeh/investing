@@ -5,6 +5,7 @@ import "../styles/globals.css";
 import Header from "@/components/Header/Header";
 import { Providers } from "@/redux/provider";
 import { ToastContainer } from "react-toastify";
+import Footer from "@/components/Footer/Footer";
 
 // const inter = Inter({ subsets: ["latin"] });
 //
@@ -28,6 +29,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
           <main className="flex items-center justify-center w-full">
             <div className="w-4/5">{children}</div>
           </main>
+          <Footer />
         </Providers>
         <ToastContainer />
       </body>
