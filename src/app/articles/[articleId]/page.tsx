@@ -45,7 +45,7 @@ const Article = () => {
                 paddingTop: "0.5rem",
               }}
             >
-              <FaTelegram />
+              <FaTelegram color="#0088cc" />
             </TelegramShareButton>
             <EmailShareButton
               subject={"لینک محصول"}
@@ -57,13 +57,13 @@ const Article = () => {
                 justifyContent: "center",
                 gap: "0.5rem",
                 alignItems: "center",
-                border: "1px solid #505050",
+                border: "1px solid #e74c3c",
                 borderRadius: "0.75rem",
                 paddingBottom: "0.5rem",
                 paddingTop: "0.5rem",
               }}
             >
-              <AiOutlineMail />
+              <AiOutlineMail color="red" />
             </EmailShareButton>
             <WhatsappShareButton
               url={articleData?.data?.link}
@@ -79,10 +79,12 @@ const Article = () => {
                 paddingTop: "0.5rem",
               }}
             >
-              <FaWhatsapp />
+              <FaWhatsapp color="#4ada80" />
             </WhatsappShareButton>
           </div>
-          <div> بورس - سرمایه گذاری :Tags </div>
+          <Text htmlTag="span" variant="body2">
+            بورس - سرمایه گذاری :Tags{" "}
+          </Text>
         </aside>
       </div>
     </div>

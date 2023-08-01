@@ -6,7 +6,7 @@ const NewsBox = () => {
     useGetArticlesQuery({ params: { pageNumber: 1, pageSize: 6 } });
 
   return (
-    <div className="flex gap-8 w-full justify-center flex-col">
+    <div className="flex gap-2 w-full justify-center flex-col">
       {articlesData?.posts.map((newsCardData: any) => {
         return <NewsCard newsCardData={newsCardData} key={newsCardData.id} />;
       })}

@@ -52,7 +52,7 @@ export const articleApi = createApi({
     getArticleById: builder.query<any, any>({
       query: (payload) => {
         return {
-          url: `/${Number(payload)}`,
+          url: `post/${Number(payload)}`,
           headers: {
             Accept: "*/*",
             "Content-Type": "application/json",
