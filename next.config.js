@@ -10,6 +10,8 @@ const nextConfig = {
       "www.emofid.com",
       "rahavard365.com",
       "cdn.arzdigital.com",
+      "biz-cdn.varzesh3.com",
+      "investing-nta8.onrender.com",
     ],
   },
 };

@@ -1,5 +1,5 @@
 "use client";
-import React, { useRef } from "react";
+import React, { useRef, useState } from "react";
 import { Controller, useForm, SubmitHandler } from "react-hook-form";
 import SunEditor from "suneditor-react";
 import "suneditor/dist/css/suneditor.min.css";
@@ -15,6 +15,7 @@ import Button from "@/components/UIKit/Button";
 import Radio from "@/components/UIKit/Radio/Radio";
 import Input from "@/components/UIKit/Input";
 import Text from "@/components/UIKit/Text";
+import FileUploader from "@/components/common/fileUploader/FileUploader";
 import { useRouter } from "next/navigation";
 //type
 import { FormValues } from "./ProfileComponentInterface";
@@ -25,13 +26,15 @@ const ProfileComponent = () => {
     handleSubmit,
     control,
     formState: { errors },
+    watch,
     reset,
   } = useForm();
   const router = useRouter();
   const [createNewPost, { isLoading }] = useCreateArticleMutation();
   const [logOut, { isLoading: logoutIsLoading }] = useLogoutMutation();
   const [sendFile, { isLoading: sendFileIsLoading }] = useSendFileMutation();
-
+  const [thumbnailPath, setThumbnailPath] = useState("");
+  console.log("************************", watch("thumbnail"));
   const onSubmit: SubmitHandler<FormValues> = (newPost) => {
     // dispatch(setContactForm(newContact))
     createNewPost(newPost)
@@ -157,23 +160,26 @@ const ProfileComponent = () => {
           )}
         </div>
         <div className="col-span-2 flex h-11 flex-col desktop:col-span-1">
-          <Controller
-            name="thumbnail"
-            control={control}
-            defaultValue=""
-            rules={{
-              required: "thumbnail اجباری است",
-            }}
-            render={({ field: { onChange, value } }) => (
-              <Input
-                type="text"
-                label="thumbnail"
-                hasError={!!errors.thumbnail}
-                value={value}
-                onChange={onChange}
+          <div className="flex w-full gap-4">
+            <div className="w-4/5">
+              <Controller
+                name="thumbnail"
+                control={control}
+                defaultValue=""
+                rules={{
+                  required: "thumbnail اجباری است",
+                }}
+                render={({ field: { value, onChange } }) => (
+                  <FileUploader
+                    onFileUpload={sendFile}
+                    sendFileIsLoading={sendFileIsLoading}
+                    onChange={onChange}
+                    value={value}
+                  />
+                )}
               />
-            )}
-          />
+            </div>
+          </div>
           {!!errors.thumbnail && (
             <Text
               variant="caption2"
@@ -183,6 +189,7 @@ const ProfileComponent = () => {
             </Text>
           )}
         </div>
+
         <div className="col-span-2 flex h-11 flex-col desktop:col-span-1">
           <Controller
             name="content"
@@ -210,7 +217,7 @@ const ProfileComponent = () => {
             </Text>
           )}
         </div>
-        <div className="col-span-2 flex h-11 flex-col desktop:col-span-1">
+        <div className="col-span-2 flex min-h-[200px] flex-col desktop:col-span-1">
           <Controller
             name="htmlContent"
             control={control}

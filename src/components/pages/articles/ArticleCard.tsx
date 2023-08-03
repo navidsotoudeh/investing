@@ -1,5 +1,5 @@
 "use client";
-import React from "react";
+import React, { useState } from "react";
 import Text from "@/components/UIKit/Text";
 import Image from "next/image";
 import Link from "next/link";
@@ -10,6 +10,17 @@ interface ArticleCardProps {
 }
 
 const ArticleCard: React.FC<ArticleCardProps> = ({ articleData }) => {
+  const checkString = (str: string) => {
+    if (str.startsWith("https")) {
+      return str;
+    } else if (str === "string") {
+      return "/assets/images/logo.png";
+    } else {
+      return `https://investing-nta8.onrender.com/file/${str}`;
+    }
+  };
+  const [src, setSrc] = useState(checkString(articleData.thumbnail));
+
   return (
     <Link
       dir="rtl"
@@ -22,10 +33,14 @@ const ArticleCard: React.FC<ArticleCardProps> = ({ articleData }) => {
       <div className="flex gap-2">
         <div>
           <Image
-            src={articleData.thumbnail}
+            src={src}
             alt="pic"
             width={300}
             height={300}
+            onError={() => {
+              console.log("30");
+              setSrc("/assets/images/logo.png");
+            }}
           />
         </div>
         <div

@@ -43,7 +43,7 @@ export const articleApi = createApi({
             "Content-Type": "application/json",
           },
           params: {
-            page: params.page,
+            page: params.pageNumber,
             pageSize: params.pageSize,
           },
         };

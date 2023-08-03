@@ -39,7 +39,7 @@ const FirstSection = () => {
         </div>
       </div>
       <Image
-        src="/images/inversting.webp"
+        src="/images/micro-investing.jpeg"
         alt="Hero box"
         className="dark:invert"
         width="500"
