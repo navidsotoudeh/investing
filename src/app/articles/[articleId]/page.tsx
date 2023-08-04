@@ -20,7 +20,7 @@ const Article = () => {
 	];
 	console.log('articleData', articleData);
 	return (
-		<div dir="rtl" className="flex w-full flex-col gap-8 bg-yellow-200">
+		<div dir="rtl" className="flex w-full flex-col gap-8">
 			<div className="w-full py-2">
 				<Breadcrumb items={items} />
 			</div>
@@ -36,7 +36,7 @@ const Article = () => {
 						}}
 					/>
 				</Text>
-				<aside className="mt-2 flex w-full justify-between border-t bg-red-200 py-2" dir="rtl">
+				<aside className="mt-2 flex w-full justify-between border-t py-2" dir="rtl">
 					<div className="flex w-[300px] gap-2">
 						<TelegramShareButton
 							url={articleData?.data?.link}

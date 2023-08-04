@@ -8,13 +8,14 @@ export const decodeToken = (token: string) => {
 	}
 };
 
-export const verifyToken = async (accessToken) => {
+export const verifyToken = async (accessToken: string) => {
 	if (!accessToken) {
 		// Access token is missing
 		return false;
 	}
 
 	try {
+		// @ts-ignore
 		const { exp } = jwtDecode(accessToken);
 		console.log('exp', exp);
 		if (exp < Date.now() / 1000) {
