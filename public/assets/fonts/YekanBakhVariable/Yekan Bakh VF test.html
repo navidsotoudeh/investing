@@ -1,13 +1,12 @@
-
 <html>
-	<meta http-equiv="Content-type" content="text/html; charset=utf-8">
-	<meta http-equiv="X-UA-Compatible" content="IE=9">
+	<meta http-equiv="Content-type" content="text/html; charset=utf-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=9" />
 	<head>
 		<title>Yekan Bakh VariableFont</title>
 		<style>
 			@font-face {
-				font-family: "Yekan Bakh VF";
-				src: url("YekanBakh-vf.ttf");
+				font-family: 'Yekan Bakh VF';
+				src: url('YekanBakh-vf.ttf');
 			}
 			p {
 				z-index: 0;
@@ -19,13 +18,13 @@
 				padding-right: 1em;
 				line-height: 1em;
 				color: #000;
-				font: 100px "Yekan Bakh VF";
-				font-feature-settings: "kern" on, "liga" on, "dlig" on;
-				-moz-font-feature-settings: "kern" on, "liga" on, "dlig" on;
-				-webkit-font-feature-settings: "kern" on, "liga" on, "dlig" on;
-				-ms-font-feature-settings: "kern" on, "liga" on, "dlig" on;
-				-o-font-feature-settings: "kern" on, "liga" on, "dlig" on;
-				font-variation-settings: "wght" 100;
+				font: 100px 'Yekan Bakh VF';
+				font-feature-settings: 'kern' on, 'liga' on, 'dlig' on;
+				-moz-font-feature-settings: 'kern' on, 'liga' on, 'dlig' on;
+				-webkit-font-feature-settings: 'kern' on, 'liga' on, 'dlig' on;
+				-ms-font-feature-settings: 'kern' on, 'liga' on, 'dlig' on;
+				-o-font-feature-settings: 'kern' on, 'liga' on, 'dlig' on;
+				font-variation-settings: 'wght' 100;
 			}
 			#textInput,
 			.css-snippet-container input {
@@ -42,7 +41,7 @@
 				width: 32%;
 				display: inline-block;
 			}
- 			label {
+			label {
 				z-index: 2;
 				position: absolute;
 				pointer-events: none;
@@ -55,7 +54,8 @@
 				color: 000;
 				opacity: 0.8;
 			}
-			.otFeatureLabel, .otFeature {
+			.otFeatureLabel,
+			.otFeature {
 				font-size: small;
 				position: relative;
 				opacity: 1;
@@ -64,19 +64,19 @@
 			}
 			.otFeatureLabel {
 				padding: 0.2em 0.5em 0.3em 0.5em;
-				margin: 0 .04em;
+				margin: 0 0.04em;
 				line-height: 2em;
 				color: #000;
 				background-color: #ddd;
-				border-radius:0.3em;
+				border-radius: 0.3em;
 				border: 0;
-				text-align:center;
+				text-align: center;
 			}
 			.otFeature {
 				visibility: collapse;
 				margin: 0 -1em 0 0;
 			}
-			input[type=checkbox]:checked + label {
+			input[type='checkbox']:checked + label {
 				visibility: visible;
 				font-weight: bold;
 				color: #eee;
@@ -131,83 +131,93 @@
 
 			.css-snippet-container:after {
 				content: 'Copied!';
-			    color: #fff;
-			    background: #97d27b;
-			    font-style: italic;
-			    font-size: 14px;
-			    position: absolute;
-			    left: 101%;
-			    top: 50%;
-			    transform: translateY(-50%);
-			    padding: 2px 5px;
-			    font-family: sans-serif;
-			    border-radius: 3px;
-			    opacity: 0;
-				transition: opacity ease .3s;
+				color: #fff;
+				background: #97d27b;
+				font-style: italic;
+				font-size: 14px;
+				position: absolute;
+				left: 101%;
+				top: 50%;
+				transform: translateY(-50%);
+				padding: 2px 5px;
+				font-family: sans-serif;
+				border-radius: 3px;
+				opacity: 0;
+				transition: opacity ease 0.3s;
 			}
 
 			.css-snippet-container.copied:after {
 				opacity: 1;
-				transition: opacity ease .3s;
+				transition: opacity ease 0.3s;
 			}
-
-
-
 		</style>
 		<script>
 			function updateFeatures() {
 				// update features based on user input:
-				var body = document.getElementById("text");
-				var codeLine = "";
-				var checkboxes = document.getElementsByClassName("otFeature")
+				var body = document.getElementById('text');
+				var codeLine = '';
+				var checkboxes = document.getElementsByClassName('otFeature');
 				for (i = 0; i < checkboxes.length; i++) {
 					var checkbox = checkboxes[i];
-					if (i!=0) { codeLine += ", " };
-					codeLine += '"'+checkbox.name+'" ';
+					if (i != 0) {
+						codeLine += ', ';
+					}
+					codeLine += '"' + checkbox.name + '" ';
 					codeLine += checkbox.checked ? '1' : '0';
-					if (checkbox.name=="kern") {
-						body.style.setProperty("font-kerning", checkbox.checked ? 'normal' : 'none');
-					} else if (checkbox.name=="liga") {
-						body.style.setProperty("font-variant-ligatures", checkbox.checked ? 'common-ligatures contextual' : 'no-common-ligatures no-contextual');
-					} else if (checkbox.name=="dlig") {
-						body.style.setProperty("font-variant-ligatures", checkbox.checked ? 'discretionary-ligatures' : 'no-discretionary-ligatures');
-					} else if (checkbox.name=="hlig") {
-						body.style.setProperty("font-variant-ligatures", checkbox.checked ? 'historical-ligatures' : 'no-historical-ligatures');
+					if (checkbox.name == 'kern') {
+						body.style.setProperty('font-kerning', checkbox.checked ? 'normal' : 'none');
+					} else if (checkbox.name == 'liga') {
+						body.style.setProperty(
+							'font-variant-ligatures',
+							checkbox.checked ? 'common-ligatures contextual' : 'no-common-ligatures no-contextual',
+						);
+					} else if (checkbox.name == 'dlig') {
+						body.style.setProperty(
+							'font-variant-ligatures',
+							checkbox.checked ? 'discretionary-ligatures' : 'no-discretionary-ligatures',
+						);
+					} else if (checkbox.name == 'hlig') {
+						body.style.setProperty(
+							'font-variant-ligatures',
+							checkbox.checked ? 'historical-ligatures' : 'no-historical-ligatures',
+						);
 					}
 				}
-				body.style.setProperty("font-feature-settings", codeLine);
+				body.style.setProperty('font-feature-settings', codeLine);
 			}
 
 			function updateParagraph() {
 				// update paragraph text based on user input:
-				var userinput = document.getElementById("textInput");
-				var paragraph = document.getElementById("text");
+				var userinput = document.getElementById('textInput');
+				var paragraph = document.getElementById('text');
 				paragraph.innerText = userinput.value;
 			}
 
 			function updateSlider() {
-				var body = document.getElementById("text");
-				var sliders = document.getElementsByClassName("slider");
-				var settingtext = "";
+				var body = document.getElementById('text');
+				var sliders = document.getElementsByClassName('slider');
+				var settingtext = '';
 				for (var i = 0; i < sliders.length; i++) {
 					var sliderID = sliders[i].id;
 					var sliderValue = sliders[i].value;
-					var label = document.getElementById("label_"+sliderID);
-					var labelName = label.getAttribute("name");
+					var label = document.getElementById('label_' + sliderID);
+					var labelName = label.getAttribute('name');
 
-					label.textContent = ""+labelName+": "+sliderValue;
+					label.textContent = '' + labelName + ': ' + sliderValue;
 
-					if (sliderID == "fontsize") {
+					if (sliderID == 'fontsize') {
 						// Text Size Slider
-						body.style.setProperty("font-size", ""+sliderValue+"px");
-						label.textContent += "px";
-					} else if (sliderID == "lineheight") {
+						body.style.setProperty('font-size', '' + sliderValue + 'px');
+						label.textContent += 'px';
+					} else if (sliderID == 'lineheight') {
 						// Line Height Slider
-						body.style.setProperty("line-height", ""+sliderValue/100.0+"em");
-						label.textContent += "%";
+						body.style.setProperty('line-height', '' + sliderValue / 100.0 + 'em');
+						label.textContent += '%';
 					} else {
 						// OTVar Slider: collect settings
-						if (settingtext != "") { settingtext += ", " };
+						if (settingtext != '') {
+							settingtext += ', ';
+						}
 						settingtext += '"' + sliderID + '" ' + sliderValue;
 
 						var cssSnippetInput = document.body.querySelector('.css-snippet-container input');
@@ -215,23 +225,23 @@
 					}
 				}
 				// apply OTVar slider settings:
-				body.style.setProperty("font-variation-settings", settingtext);
+				body.style.setProperty('font-variation-settings', settingtext);
 			}
 
-			function init () {
+			function init() {
 				updateSlider();
 
 				bindEvents();
 			}
 
-			function bindEvents () {
+			function bindEvents() {
 				var cssSnippetInput = document.body.querySelector('.css-snippet-container input');
 				var cssSnippetCopyButton = document.body.querySelector('.css-snippet-container button');
 
 				cssSnippetInput.onclick = cssSnippetCopyButton.onclick = handleSnippetCopy;
 			}
 
-			function handleSnippetCopy (e) {
+			function handleSnippetCopy(e) {
 				e.preventDefault();
 
 				var cssSnippetContainer = document.body.querySelector('.css-snippet-container');
@@ -248,30 +258,38 @@
 
 				window.setTimeout(function () {
 					cssSnippetContainer.classList.remove('copied');
-				}, 1500)
+				}, 1500);
 			}
 		</script>
 	</head>
 	<body onload="init();">
 		<!-- <input type="text" value="Type Text Here." id="textInput" onkeyup="updateParagraph();" onclick="this.select();" /> -->
-		<textarea
-			id="textInput"
-			rows="5"
-			onkeyup="updateParagraph();"
-			onclick="this.select();">برای تست، متن خود را اینجا بنویسید</textarea>
+		<textarea id="textInput" rows="5" onkeyup="updateParagraph();" onclick="this.select();">
+برای تست، متن خود را اینجا بنویسید</textarea
+		>
 		<div>
-			<div class="labeldiv"><label class="sliderlabel" id="label_fontsize" name="Font Size">Font Size</label><input type="range" min="10" max="144" value="110" class="slider" id="fontsize" oninput="updateSlider();"></div>
-			<div class="labeldiv"><label class="sliderlabel" id="label_lineheight" name="Line Height">Line Height</label><input type="range" min="50" max="300" value="180" class="slider" id="lineheight" oninput="updateSlider();"></div>
-			<div class='labeldiv'><label class='sliderlabel' id='label_wght' name='Weight'>Weight</label><input type='range' min='100' max='950' value='400' class='slider' id='wght' oninput='updateSlider();'></div>
+			<div class="labeldiv">
+				<label class="sliderlabel" id="label_fontsize" name="Font Size">Font Size</label
+				><input type="range" min="10" max="144" value="110" class="slider" id="fontsize" oninput="updateSlider();" />
+			</div>
+			<div class="labeldiv">
+				<label class="sliderlabel" id="label_lineheight" name="Line Height">Line Height</label
+				><input type="range" min="50" max="300" value="180" class="slider" id="lineheight" oninput="updateSlider();" />
+			</div>
+			<div class="labeldiv">
+				<label class="sliderlabel" id="label_wght" name="Weight">Weight</label
+				><input type="range" min="100" max="950" value="400" class="slider" id="wght" oninput="updateSlider();" />
+			</div>
 			<div class="labeldiv css-snippet-container">
-				<input type="text" readonly value="" data-m3g="true">
+				<input type="text" readonly value="" data-m3g="true" />
 				<button type="button">Copy</button>
 			</div>
 		</div>
 
-		<p id="text"> بنشین بر لب جوی و گذر عمر ببین
-		<br>
-		کاین اشارت ز جهان گذران ما را بس
+		<p id="text">
+			بنشین بر لب جوی و گذر عمر ببین
+			<br />
+			کاین اشارت ز جهان گذران ما را بس
 		</p>
 	</body>
 </html>

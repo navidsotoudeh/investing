@@ -1,7 +1,7 @@
-"use client";
-import LoginComponent from "@/components/pages/login/LoginComponent";
+'use client';
+import LoginComponent from '@/components/pages/login/LoginComponent';
 const Profile = () => {
-  return <LoginComponent />;
+	return <LoginComponent />;
 };
 
 export default Profile;
